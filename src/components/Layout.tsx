@@ -15,6 +15,7 @@ import { useLocalStorage } from "../hooks/useLocalStorage"
 import { SplitRuleWrapper } from "./RuleBasedFilters/components/SplitRuleWrapper"
 import { Rule } from "./RuleBasedFilters/components/Rule"
 import { DeemphasizeOption } from "./Item/Item"
+import { PurchaseDiagnostics } from "./Diagnostics/PurchaseDiagnostics"
 
 export function Layout() {
 	let account = useAccount()
@@ -62,6 +63,9 @@ export function Layout() {
 	}
 
 	const character = account.characters.find((char) => char.id === activeChar)
+	const linkedAccountPlatforms = Object.entries(account.linkedAccounts)
+		.filter(([, platformId]) => Boolean(platformId))
+		.map(([platform]) => platform)
 
 	if (!character) {
 		return (
@@ -176,6 +180,12 @@ export function Layout() {
 					/>
 				</div>
 			) : null}
+
+			<PurchaseDiagnostics
+				character={character}
+				storeType={storeType}
+				linkedAccountPlatforms={linkedAccountPlatforms}
+			/>
 
 			<Store
 				character={character}

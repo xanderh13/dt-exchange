@@ -1,0 +1,62 @@
+.purchase-diagnostics {
+	margin: 1em 0;
+	border: 1px solid rgba(93, 248, 255, 0.5);
+	background: rgba(0, 0, 0, 0.25);
+	color: rgb(220, 220, 220);
+}
+
+.purchase-diagnostics > summary {
+	cursor: pointer;
+	padding: 0.75em 1em;
+	color: rgb(93, 248, 255);
+	font-family: "Roboto Mono", monospace;
+	font-weight: 600;
+}
+
+.purchase-diagnostics-content {
+	padding: 0 1em 1em;
+}
+
+.purchase-diagnostics-content p {
+	margin: 0 0 0.75em;
+	line-height: 1.45;
+}
+
+.purchase-diagnostics-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	margin-bottom: 0.75em;
+}
+
+.purchase-diagnostics-actions button {
+	border: 1px solid rgb(93, 248, 255);
+	background: rgba(93, 248, 255, 0.08);
+	color: white;
+	padding: 0.55em 0.8em;
+	font-family: "Roboto Mono", monospace;
+	cursor: pointer;
+}
+
+.purchase-diagnostics-actions button:disabled {
+	cursor: not-allowed;
+	opacity: 0.45;
+}
+
+.purchase-diagnostics-message {
+	color: gold;
+}
+
+.purchase-diagnostics textarea {
+	box-sizing: border-box;
+	width: 100%;
+	min-height: 24em;
+	resize: vertical;
+	border: 1px solid rgba(255, 215, 0, 0.55);
+	background: rgb(10, 10, 10);
+	color: rgb(225, 225, 225);
+	padding: 0.75em;
+	font-family: "Roboto Mono", monospace;
+	font-size: 0.8em;
+	line-height: 1.4;
+}
