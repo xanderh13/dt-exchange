@@ -121,6 +121,18 @@ export function Rules(props: RulesProps) {
 				/>
 				{props.input.type !== "curio" && (
 					<>
+						<Rule
+							label={"Dump Stat (80/80/80/80/60)"}
+							type={"text"}
+							name={"dumpStat"}
+							index={props.index}
+							value={props.input.dumpStat}
+							focus={focusedRule}
+							placeholder={"Mobility, Defences, or any"}
+							onChange={(event) => props.onChange(props.index, event)}
+							onFocus={(event) => handleFormFocus(event)}
+							onBlur={() => setFocusedRule("")}
+						/>
 						<div className={"filter-rules-group-header"}>
 							<RuleText size={"medium"} padding={"5px 0 0 0"}>
 								Statistic Rules
@@ -140,7 +152,7 @@ export function Rules(props: RulesProps) {
 									onBlur={() => setFocusedRule("")}
 								/>
 								<Rule
-									label={"Minimum Value"}
+									label={"Minimum Max Value"}
 									type={"number"}
 									min={0}
 									max={100}

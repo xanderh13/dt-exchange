@@ -14,6 +14,7 @@ export function formDataToRules(rulesFormData: FormFilterRule[]): FilterRule[] {
 			type: ruleStringToStringValue(formRule.type, ITEM_CATEGORIES) as ItemCategory,
 			blessing: ruleStringToArrayValue(formRule.blessing),
 			perk: ruleStringToArrayValue(formRule.perk),
+			dumpStat: ruleStringToArrayValue(formRule.dumpStat),
 			store: ruleStringToArrayValue(formRule.store, STORE_TYPES) as StoreType[],
 			color:
 				formRule.color && formRule.color !== defaultEmphasisColor.toLowerCase()
@@ -37,6 +38,7 @@ export function rulesToFormData(rulesData: FilterRule[]): FormFilterRule[] {
 			type: ruleValueToString(rule.type, ITEM_CATEGORIES),
 			blessing: ruleValueToString(rule.blessing),
 			perk: ruleValueToString(rule.perk),
+			dumpStat: ruleValueToString(rule.dumpStat),
 			store: ruleValueToString(rule.store, STORE_TYPES, true),
 			color: rule.color || "",
 			stats: rule.stats ? [...rule.stats] : [],

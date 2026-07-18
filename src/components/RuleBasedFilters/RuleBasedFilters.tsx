@@ -32,6 +32,7 @@ export function RuleBasedFilters(props: Props) {
 			item: "",
 			type: "",
 			blessing: "",
+			dumpStat: "",
 			minBlessingRarity: "0",
 			perk: "",
 			minPerkRarity: "0",

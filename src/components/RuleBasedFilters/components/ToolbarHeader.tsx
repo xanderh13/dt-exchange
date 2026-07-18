@@ -36,6 +36,7 @@ export function ToolbarHeader(props: ToolbarHeaderProps) {
 		} else if (parseFloat(input.minPerkRarity)) {
 			newHeaderAr.push(`Min Perk Rarity: ${input.minPerkRarity}`)
 		}
+		if (input.dumpStat) newHeaderAr.push(`Perfect Dump: ${capitalize(input.dumpStat)}`)
 		// Statistics
 		if (input.stats?.length) {
 			const statRules: string[] = []

@@ -37,9 +37,24 @@
 
 .stat-p {
 	margin-right: 0.5em;
+	min-width: 4.5em;
+	white-space: nowrap;
+}
+
+.stat-p-current {
+	color: rgb(189, 189, 189);
+}
+
+.stat-p-separator {
+	margin: 0 0.15em;
+}
+
+.stat-p-max {
+	color: gold;
 }
 
 .stat-bar-outer {
+	position: relative;
 	width: 100%;
 	height: 0.7em;
 	border: 1px solid gold;
@@ -47,7 +62,17 @@
 }
 
 .stat-bar-inner {
-	position: relative;
+	position: absolute;
+	left: 0;
+	top: 0;
 	background: gold;
+	height: 100%;
+}
+
+.stat-bar-potential {
+	position: absolute;
+	left: 0;
+	top: 0;
+	background: rgba(255, 215, 0, 0.35);
 	height: 100%;
 }

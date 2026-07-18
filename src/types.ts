@@ -98,6 +98,7 @@ export interface Overrides {
 	traits: Trait[]
 	perks: Perk[]
 	base_stats?: BaseStat[]
+	expertise_stat_increases?: BaseStat[]
 	filter_match?: number // index of the first rule that the item matched to
 }
 
@@ -223,6 +224,7 @@ export interface FilterRule {
 	type?: ItemCategory
 	blessing?: string[] | string
 	perk?: string[] | string
+	dumpStat?: string[] | string
 	store?: StoreType[] | StoreType
 	minBlessingRarity?: number
 	minPerkRarity?: number
@@ -243,6 +245,7 @@ export interface FormFilterRule {
 	type: string
 	blessing: string
 	perk: string
+	dumpStat: string
 	store: string
 	minBlessingRarity: string
 	minPerkRarity: string

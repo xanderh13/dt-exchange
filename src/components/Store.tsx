@@ -9,6 +9,7 @@ import { Countdown } from "./Countdown"
 import { Item } from "./Item/Item"
 import type { DeemphasizeOption } from "./Item/Item"
 import { getBlessingDescription, getPerkDescription } from "./Item/utils"
+import { calculateMaxBaseStats, findDumpStat, matchesDumpStatName } from "./Item/baseStats"
 
 const sortOptions = {
 	modifiersRating: (a: Personal, b: Personal) => {
@@ -81,6 +82,14 @@ function filterFunc(
 	let arr: string[]
 
 	var found = targets.findIndex(function (target) {
+		const needsMaxStats = target.dumpStat || target.stats
+		const maxStats = needsMaxStats
+			? calculateMaxBaseStats(
+					offer.description.overrides.base_stats ?? [],
+					offer.description.overrides.expertise_stat_increases,
+				)
+			: undefined
+
 		arr = typeof target.character === "string" ? [target.character] : target.character
 		if (target.character && !arr.includes(char.archetype)) {
 			return false
@@ -197,9 +206,18 @@ function filterFunc(
 			}
 		}
 
+		if (target.dumpStat) {
+			arr = typeof target.dumpStat === "string" ? [target.dumpStat] : target.dumpStat
+			const dumpStat = findDumpStat(maxStats ?? [])
+			const dumpStatName = dumpStat && localisation[dumpStat.name].display_name
+			const dumpStatPass = dumpStatName && matchesDumpStatName(dumpStatName, arr)
+
+			if (!dumpStatPass) return false
+		}
+
 		if (target.stats) {
 			const statsPass: boolean = target.stats.every((statRule) => {
-				const offerStatFound = offer.description.overrides.base_stats?.find(
+				const offerStatFound = maxStats?.find(
 					(baseStat) =>
 						localisation[baseStat.name].display_name.toLowerCase() ===
 							statRule.name.toLowerCase() && baseStat.value * 100 >= statRule.min,

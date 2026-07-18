@@ -55,6 +55,9 @@ Array filters (`[]`) allow listing **one or more** matches. If the item matches 
 - `type`: item type
   - possible values: `curio`, `ranged` or `melee`
   - example: `"type": ["melee", "ranged"]`
+- `dumpStat`: require an exact `80/80/80/80/60` maximum-potential distribution and select which modifier is the 60. Use `any` to accept any dump stat, or list multiple acceptable names.
+  - example: `"dumpStat": "Mobility"`
+  - example: `"dumpStat": ["Mobility", "Defences"]`
 
 ### Numeric
 
@@ -70,6 +73,8 @@ Numeric filters are just normal integers, only a single value can be defined at 
 - `minPerkRarity`: same as above, but for perks
   - possible values: `1`, `2`, `3`, `4`
   - example: `"minPerkRarity": 4`
+- `stats`: minimum maximum-potential values for named weapon modifiers. Every entry must match.
+  - example: `"stats": [{ "name": "Mobility", "min": 60 }]`
 
 ### Strings
 
@@ -167,6 +172,16 @@ In addition we're looking for more than one possible blessing, so they're inside
 ```
 
 This rule will match any shop item that has sum of all stat modifiers combined 360 or larger. While it's here as its own rule, it can be combined with any other filters just like anything else.
+
+### Example: perfect weapon potential with Mobility as the dump stat
+
+```json
+{
+	"dumpStat": "Mobility"
+}
+```
+
+This matches weapons whose maximum-potential distribution is exactly `80/80/80/80/60`, with Mobility as the single 60% modifier. Use `"dumpStat": "any"` if the identity of the dump stat does not matter.
 
 ### Example: any blessing with higher rarity
 
