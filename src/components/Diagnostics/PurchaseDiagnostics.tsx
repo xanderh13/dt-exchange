@@ -6,6 +6,7 @@ import {
 	runPurchaseSchemaProbes,
 	type PurchaseDiagnosticReport,
 } from "../../services/purchaseDiagnostics"
+import { collectAuthFlowDiagnostics } from "../../services/authDiagnostics"
 import "./PurchaseDiagnostics.css"
 
 type Props = {
@@ -16,7 +17,7 @@ type Props = {
 
 export function PurchaseDiagnostics({ character, storeType, linkedAccountPlatforms }: Props) {
 	const [report, setReport] = useState<PurchaseDiagnosticReport>()
-	const [busy, setBusy] = useState<"collect" | "schema" | "routing">()
+	const [busy, setBusy] = useState<"collect" | "schema" | "routing" | "auth">()
 	const [message, setMessage] = useState<string>()
 	const reportText = useMemo(() => (report ? JSON.stringify(report, null, 2) : ""), [report])
 
@@ -59,6 +60,19 @@ export function PurchaseDiagnostics({ character, storeType, linkedAccountPlatfor
 		}
 	}
 
+	async function analyzeAuth() {
+		setBusy("auth")
+		setMessage(undefined)
+		try {
+			setReport(await collectAuthFlowDiagnostics())
+			setMessage("Website authentication flow analyzed without sending any tokens.")
+		} catch (error) {
+			setMessage(error instanceof Error ? error.message : String(error))
+		} finally {
+			setBusy(undefined)
+		}
+	}
+
 	async function copyReport() {
 		try {
 			await navigator.clipboard.writeText(reportText)
@@ -73,12 +87,15 @@ export function PurchaseDiagnostics({ character, storeType, linkedAccountPlatfor
 			<summary>PlayStation Purchase Diagnostics</summary>
 			<div className="purchase-diagnostics-content">
 				<p>
-					This panel never displays or copies your access token. Collection performs three GET
-					requests. Schema probes send missing fields and deliberately wrong types. Routing
-					probes compare account and character wallet paths using a nonexistent UUID, so none
-					of the probe bodies can identify a valid purchase.
+					This panel never displays or copies your tokens. Auth analysis downloads only the public
+					dashboard script with credentials omitted and inspects non-secret session metadata.
+					Collection performs three API GET requests. Schema and routing probes use missing,
+					invalid, or nonexistent identifiers, so none can identify a valid purchase.
 				</p>
 				<div className="purchase-diagnostics-actions">
+					<button type="button" onClick={analyzeAuth} disabled={busy !== undefined}>
+						{busy === "auth" ? "Analyzing…" : "Analyze website auth flow"}
+					</button>
 					<button type="button" onClick={collect} disabled={busy !== undefined}>
 						{busy === "collect" ? "Collecting…" : "Collect diagnostics"}
 					</button>
