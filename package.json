@@ -4,6 +4,7 @@
 	"scripts": {
 		"start": "npm run build -- --watch",
 		"build": "node ./bin/build.mjs",
+		"localisation:update": "node ./bin/update-localisation.mjs",
 		"test": "vitest run",
 		"typecheck": "tsc",
 		"fmt": "oxfmt ."
