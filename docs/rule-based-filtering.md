@@ -65,7 +65,7 @@ Numeric filters are just normal integers, only a single value can be defined at 
 
 - `minStats`: minimum sum of all modifiers combined
   - example: `"minStats": 360`
-- `minRating`: minimum total rating of the item
+- `minRating`: minimum in-game Power of the item (the legacy field name is retained for saved-filter compatibility)
   - example: `"minRating": 500`
 - `minBlessingRarity`: requirement for a blessing to be of specific rarity, if there are multiple blessings it's considered a match if any of the blessings has this rarity.
   - possible values: `1`, `2`, `3`, `4`

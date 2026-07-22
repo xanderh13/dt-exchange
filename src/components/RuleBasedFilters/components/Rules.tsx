@@ -217,7 +217,7 @@ export function Rules(props: RulesProps) {
 								onBlur={() => setFocusedRule("")}
 							/>
 							<Rule
-								label={"Rating"}
+								label={"Power"}
 								type={"number"}
 								min={0}
 								max={1000}

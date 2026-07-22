@@ -51,7 +51,7 @@ export function ToolbarHeader(props: ToolbarHeaderProps) {
 		}
 		// Minimums
 		if (parseFloat(input.minStats)) newHeaderAr.push(`Min Stats: ${input.minStats}`)
-		if (parseFloat(input.minRating)) newHeaderAr.push(`Min Rating: ${input.minRating}`)
+		if (parseFloat(input.minRating)) newHeaderAr.push(`Min Power: ${input.minRating}`)
 		return newHeaderAr.length ? newHeaderAr.join(" - ") : ""
 	}
 

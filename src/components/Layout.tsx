@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Button } from "./Button"
 import { archetype } from "../icons"
 import { Loading } from "./Loading"
-import { Store, SORT_OPTIONS, FILTER_OPTIONS, FilterOption } from "./Store"
+import { Store, SORT_OPTIONS, SORT_LABELS, FILTER_OPTIONS, FilterOption } from "./Store"
 import { Text } from "./Text"
 import { Title } from "./Title"
 import { useAccount } from "../hooks/useAccount"
@@ -145,6 +145,7 @@ export function Layout() {
 					value={sortOption}
 					focus={focusedInput}
 					dataValues={SORT_OPTIONS}
+					labels={SORT_LABELS}
 					onChange={function (event) {
 						setSortOption(event.target.value as SortOption)
 					}}

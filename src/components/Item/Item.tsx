@@ -9,6 +9,7 @@ import { Divider } from "./components/Divider"
 import { BaseStats } from "./components/BaseStats"
 import { Perks } from "./components/Perks"
 import { Blessings } from "./components/Blessings"
+import { calculateItemPower } from "./powerLevel"
 
 export const deemphasizeClass = {
 	none: "offer-display-normal",
@@ -44,6 +45,7 @@ export function Item({
 	items: Items
 	targets: FilterRule[]
 }) {
+	const power = calculateItemPower(offer.description)
 	let alreadyOwnedClass = offer.state === "completed" ? "item-already-owned" : ""
 	let filterMatchClass = rbfEnabled
 		? offer.description.overrides.filter_match >= 0
@@ -80,8 +82,8 @@ export function Item({
 					>
 						<img src={rating} style={{}} />
 						<div>
-							<Text>Rating</Text>
-							{offer.description.overrides.itemLevel}
+							<Text>Power</Text>
+							{power}
 						</div>
 					</div>
 					<div className="info-item">

@@ -10,6 +10,7 @@ import { Item } from "./Item/Item"
 import type { DeemphasizeOption } from "./Item/Item"
 import { getBlessingDescription, getPerkDescription } from "./Item/utils"
 import { calculateMaxBaseStats, findDumpStat, matchesDumpStatName } from "./Item/baseStats"
+import { calculateItemPower } from "./Item/powerLevel"
 
 const sortOptions = {
 	modifiersRating: (a: Personal, b: Personal) => {
@@ -25,12 +26,12 @@ const sortOptions = {
 	},
 
 	itemRating: (a: Personal, b: Personal) => {
-		return b.description.overrides.itemLevel - a.description.overrides.itemLevel
+		return calculateItemPower(b.description) - calculateItemPower(a.description)
 	},
 
 	rarity: (a: Personal, b: Personal) => {
 		if (b.description.overrides.rarity === a.description.overrides.rarity) {
-			return b.description.overrides.itemLevel - a.description.overrides.itemLevel
+			return calculateItemPower(b.description) - calculateItemPower(a.description)
 		}
 		return b.description.overrides.rarity - a.description.overrides.rarity
 	},
@@ -48,6 +49,13 @@ const sortOptions = {
 
 export type SortOption = keyof typeof sortOptions
 export const SORT_OPTIONS = Object.keys(sortOptions) as SortOption[]
+export const SORT_LABELS: Record<SortOption, string> = {
+	modifiersRating: "Modifier Rating",
+	itemRating: "Item Power",
+	rarity: "Rarity",
+	alphabetical: "Alphabetical",
+	credits: "Credits",
+}
 
 let filterOptions = {
 	none: () => () => true,
@@ -134,7 +142,7 @@ function filterFunc(
 			return false
 		}
 
-		if (target.minRating && target.minRating > offer.description.overrides.itemLevel) {
+		if (target.minRating && target.minRating > calculateItemPower(offer.description)) {
 			return false
 		}
 
