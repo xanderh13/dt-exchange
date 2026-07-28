@@ -22,7 +22,12 @@ export interface WeaponFamily {
 }
 
 export const WEAPON_FAMILIES = catalog.families as WeaponFamily[]
-export const WEAPON_FAMILY_IDS = WEAPON_FAMILIES.map(({ id }) => id)
+export const WEAPON_FAMILY_IDS = [...WEAPON_FAMILIES]
+	.sort(
+		(a, b) =>
+			(a.type === "melee" ? 0 : 1) - (b.type === "melee" ? 0 : 1) || a.name.localeCompare(b.name),
+	)
+	.map(({ id }) => id)
 export const WEAPON_FAMILY_LABELS = Object.fromEntries(
 	WEAPON_FAMILIES.map(({ id, name, type }) => [
 		id,

@@ -12,6 +12,7 @@ import { getBlessingDescription, getPerkDescription } from "./Item/utils"
 import { calculateMaxBaseStats, findDumpStat, matchesDumpStatName } from "./Item/baseStats"
 import { calculateItemPower } from "./Item/powerLevel"
 import { getWeaponFamily, matchesWeaponFamilyStats } from "../weaponCatalog"
+import { matchesCurioStat } from "../curioStats"
 
 const sortOptions = {
 	modifiersRating: (a: Personal, b: Personal) => {
@@ -155,6 +156,16 @@ function filterFunc(
 				return false
 			}
 		} else if (target.weaponStats?.length) {
+			return false
+		}
+
+		if (
+			target.curioStat &&
+			!matchesCurioStat(offer.description.overrides.traits, target.curioStat, target.minCurioStat)
+		) {
+			return false
+		}
+		if (!target.curioStat && target.minCurioStat) {
 			return false
 		}
 

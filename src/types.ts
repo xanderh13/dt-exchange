@@ -1,3 +1,5 @@
+import type { CurioStat } from "./curioStats"
+
 export interface User {
 	AccessToken: string
 	RefreshToken: string
@@ -223,6 +225,8 @@ export interface FilterRule {
 	item?: string[] | string
 	weaponFamily?: string
 	weaponStats?: WeaponStatRule[]
+	curioStat?: CurioStat
+	minCurioStat?: number
 	type?: ItemCategory
 	blessing?: string[] | string
 	perk?: string[] | string
@@ -256,6 +260,8 @@ export interface FormFilterRule {
 	item: string
 	weaponFamily: string
 	weaponStats: FormWeaponStatRule[]
+	curioStat: string
+	minCurioStat: string
 	type: string
 	blessing: string
 	perk: string

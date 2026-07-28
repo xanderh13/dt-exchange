@@ -9,6 +9,12 @@ import { RuleText } from "./RuleText"
 import { CloseButton } from "./Buttons/CloseButton"
 import { AddStatisticButton } from "./Buttons/AddStatisticButton"
 import { getWeaponFamily, WEAPON_FAMILY_IDS, WEAPON_FAMILY_LABELS } from "../../../weaponCatalog"
+import {
+	CURIO_STAT_LABELS,
+	CURIO_STAT_LIMITS,
+	CURIO_STATS,
+	type CurioStat,
+} from "../../../curioStats"
 
 type RulesProps = {
 	input: FormFilterRule
@@ -30,6 +36,9 @@ type RulesProps = {
 export function Rules(props: RulesProps) {
 	let [focusedRule, setFocusedRule] = useState<string>("")
 	const selectedFamily = getWeaponFamily(props.input.weaponFamily)
+	const selectedCurioStat = CURIO_STATS.includes(props.input.curioStat as CurioStat)
+		? (props.input.curioStat as CurioStat)
+		: undefined
 
 	function handleFormFocus(event: FormEvent<HTMLInputElement | HTMLSelectElement>) {
 		const eventTarget: HTMLInputElement = event.target as HTMLInputElement
@@ -92,7 +101,61 @@ export function Rules(props: RulesProps) {
 					onFocus={(event) => handleFormFocus(event)}
 					onBlur={() => setFocusedRule("")}
 				/>
-				{props.input.type !== "curio" && (
+				{props.input.type === "curio" ? (
+					<>
+						<SplitRuleWrapper columns={2}>
+							<Rule
+								label={"Curio Main Stat"}
+								type={"select"}
+								name={"curioStat"}
+								index={props.index}
+								value={props.input.curioStat}
+								focus={focusedRule}
+								dataValues={[...CURIO_STATS]}
+								labels={CURIO_STAT_LABELS}
+								addAnyValue
+								onChange={(event) => props.onChange(props.index, event)}
+								onFocus={(event) => handleFormFocus(event)}
+								onBlur={() => setFocusedRule("")}
+							/>
+							{selectedCurioStat && selectedCurioStat !== "wound" ? (
+								<Rule
+									label={`Minimum ${CURIO_STAT_LABELS[selectedCurioStat]}${
+										selectedCurioStat === "toughness" || selectedCurioStat === "health"
+											? " (%)"
+											: ""
+									}`}
+									type={"number"}
+									min={CURIO_STAT_LIMITS[selectedCurioStat].min}
+									max={CURIO_STAT_LIMITS[selectedCurioStat].max}
+									name={"minCurioStat"}
+									index={props.index}
+									value={props.input.minCurioStat}
+									focus={focusedRule}
+									placeholder={"Any"}
+									onChange={(event) => props.onChange(props.index, event)}
+									onFocus={(event) => handleFormFocus(event)}
+									onBlur={() => setFocusedRule("")}
+								/>
+							) : (
+								<div />
+							)}
+						</SplitRuleWrapper>
+						{props.input.item ? (
+							<Rule
+								label={"Cosmetic Name (legacy; clear to ignore)"}
+								type={"text"}
+								name={"item"}
+								index={props.index}
+								value={props.input.item}
+								focus={focusedRule}
+								onChange={(event) => props.onChange(props.index, event)}
+								onFocus={(event) => handleFormFocus(event)}
+								onBlur={() => setFocusedRule("")}
+							/>
+						) : undefined}
+					</>
+				) : (
 					<>
 						<Rule
 							label={"Weapon Family"}
@@ -115,24 +178,20 @@ export function Rules(props: RulesProps) {
 								</RuleText>
 							</div>
 						)}
+						<Rule
+							label={"Item Name Contains (optional)"}
+							type={"text"}
+							name={"item"}
+							index={props.index}
+							value={props.input.item}
+							focus={focusedRule}
+							placeholder={"Additional partial-name filter (usually leave blank)"}
+							onChange={(event) => props.onChange(props.index, event)}
+							onFocus={(event) => handleFormFocus(event)}
+							onBlur={() => setFocusedRule("")}
+						/>
 					</>
 				)}
-				<Rule
-					label={props.input.type === "curio" ? "Items" : "Item Name Contains (optional)"}
-					type={"text"}
-					name={"item"}
-					index={props.index}
-					value={props.input.item}
-					focus={focusedRule}
-					placeholder={
-						props.input.type === "curio"
-							? undefined
-							: "Additional partial-name filter (usually leave blank)"
-					}
-					onChange={(event) => props.onChange(props.index, event)}
-					onFocus={(event) => handleFormFocus(event)}
-					onBlur={() => setFocusedRule("")}
-				/>
 				<Rule
 					label={"Blessings"}
 					type={"text"}

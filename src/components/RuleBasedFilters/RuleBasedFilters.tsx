@@ -33,6 +33,8 @@ export function RuleBasedFilters(props: Props) {
 			item: "",
 			weaponFamily: "",
 			weaponStats: [],
+			curioStat: "",
+			minCurioStat: "",
 			type: "",
 			blessing: "",
 			dumpStat: "",
@@ -105,15 +107,30 @@ export function RuleBasedFilters(props: Props) {
 			if (!ruleFormDirty) setRuleFormDirty(true)
 			return
 		}
+		if (eventTarget.name === "curioStat") {
+			data[index] = {
+				...data[index]!,
+				curioStat: eventTarget.value,
+				minCurioStat: "",
+			}
+			setRuleFields(data)
+			if (!ruleFormDirty) setRuleFormDirty(true)
+			return
+		}
 		if (eventTarget.name === "type") {
 			const family = getWeaponFamily(data[index]!.weaponFamily)
-			const familyDoesNotFit =
-				!!family && !!eventTarget.value && family.type !== eventTarget.value
+			const familyDoesNotFit = !!family && !!eventTarget.value && family.type !== eventTarget.value
+			const selectingCurio = eventTarget.value === "curio"
 			data[index] = {
 				...data[index]!,
 				type: eventTarget.value,
-				weaponFamily: familyDoesNotFit ? "" : data[index]!.weaponFamily,
-				weaponStats: familyDoesNotFit ? [] : data[index]!.weaponStats,
+				item: selectingCurio ? "" : data[index]!.item,
+				weaponFamily: familyDoesNotFit || selectingCurio ? "" : data[index]!.weaponFamily,
+				weaponStats: familyDoesNotFit || selectingCurio ? [] : data[index]!.weaponStats,
+				stats: selectingCurio ? [] : data[index]!.stats,
+				dumpStat: selectingCurio ? "" : data[index]!.dumpStat,
+				curioStat: selectingCurio ? data[index]!.curioStat : "",
+				minCurioStat: selectingCurio ? data[index]!.minCurioStat : "",
 			}
 			setRuleFields(data)
 			if (!ruleFormDirty) setRuleFormDirty(true)

@@ -4,6 +4,7 @@ import "./ToolbarHeader.css"
 import { defaultEmphasisColor, STORE_LABELS } from "../../../types"
 import { capitalize } from "../../../utils"
 import { getWeaponFamily, getWeaponStatLabel } from "../../../weaponCatalog"
+import { CURIO_STAT_LABELS, CURIO_STATS, type CurioStat } from "../../../curioStats"
 
 type ToolbarHeaderProps = {
 	input: FormFilterRule
@@ -16,6 +17,13 @@ export function ToolbarHeader(props: ToolbarHeaderProps) {
 		if (input.type) newHeaderAr.push(capitalize(input.type))
 		const weaponFamily = getWeaponFamily(input.weaponFamily)
 		if (weaponFamily) newHeaderAr.push(weaponFamily.name)
+		if (CURIO_STATS.includes(input.curioStat as CurioStat)) {
+			const curioStat = input.curioStat as CurioStat
+			const minimum = parseFloat(input.minCurioStat)
+			newHeaderAr.push(
+				minimum > 0 ? `${CURIO_STAT_LABELS[curioStat]}: ${minimum}` : CURIO_STAT_LABELS[curioStat],
+			)
+		}
 		if (input.item) newHeaderAr.push(capitalize(input.item))
 		// Blessings
 		if (input.blessing) {

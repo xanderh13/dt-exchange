@@ -73,6 +73,10 @@ Numeric filters are just normal integers, only a single value can be defined at 
 - `minPerkRarity`: same as above, but for perks
   - possible values: `1`, `2`, `3`, `4`
   - example: `"minPerkRarity": 4`
+- `minCurioStat`: minimum value for the selected curio main stat. The visual editor limits
+  Toughness to 13–17%, Health to 17–21%, and Stamina to 1–3. Wounds are always +1 and do not use
+  this field.
+  - example: `"minCurioStat": 17`
 - `stats`: minimum maximum-potential values for named weapon modifiers. Every entry must match.
   - example: `"stats": [{ "name": "Mobility", "min": 60 }]`
 - `weaponStats`: minimum maximum-potential values for the selected `weaponFamily`. The visual
@@ -91,6 +95,9 @@ String filters allow defining only a single possible value.
 - `weaponFamily`: the stable family ID selected by the visual editor. It matches every swappable
   mark in that family by its exact Atoma item ID.
   - example: `"weaponFamily": "combatsword_p3"` for Duelling Swords
+- `curioStat`: the curio's main stat, independent of its cosmetic name.
+  - possible values: `toughness`, `health`, `stamina`, `wound`
+  - example: `"curioStat": "toughness"`
 
 ### Meta
 
@@ -226,10 +233,12 @@ This rule will match any item in the hourly shop that has blessing of rarity 3 o
 {
 	"character": "veteran",
 	"type": "curio",
-	"blessing": "Endurance",
+	"curioStat": "toughness",
+	"minCurioStat": 17,
 	"perk": "Block Efficiency",
 	"minRating": 80
 }
 ```
 
-This would look for specific kind of curios that are available to your `veteran` character.
+This would look for a 17% Toughness curio with Block Efficiency that is available to your
+`veteran` character.

@@ -8,6 +8,8 @@ function formRule(overrides: Partial<FormFilterRule> = {}): FormFilterRule {
 		item: "",
 		weaponFamily: "",
 		weaponStats: [],
+		curioStat: "",
+		minCurioStat: "",
 		type: "",
 		blessing: "",
 		perk: "",
@@ -75,5 +77,25 @@ describe("weapon family rule conversion", () => {
 			{ id: "damage", min: "" },
 			{ id: "mobility", min: "" },
 		])
+	})
+})
+
+describe("curio main stat rule conversion", () => {
+	test("stores the selected stat and clamps its minimum to the obtainable maximum", () => {
+		const [rule] = formDataToRules([
+			formRule({ type: "curio", curioStat: "toughness", minCurioStat: "99" }),
+		])
+
+		expect(rule?.curioStat).toBe("toughness")
+		expect(rule?.minCurioStat).toBe(17)
+	})
+
+	test("does not store a minimum for wounds", () => {
+		const [rule] = formDataToRules([
+			formRule({ type: "curio", curioStat: "wound", minCurioStat: "1" }),
+		])
+
+		expect(rule?.curioStat).toBe("wound")
+		expect(rule?.minCurioStat).toBeUndefined()
 	})
 })

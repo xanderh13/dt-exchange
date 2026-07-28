@@ -5,6 +5,7 @@ import {
 	getWeaponFamilyForItem,
 	matchesWeaponFamilyStats,
 	WEAPON_FAMILIES,
+	WEAPON_FAMILY_IDS,
 } from "./weaponCatalog"
 
 describe("weapon catalog", () => {
@@ -40,6 +41,21 @@ describe("weapon catalog", () => {
 			"Maccabian Mk II Duelling Sword",
 			"Maccabian Mk V Duelling Sword",
 		])
+	})
+
+	test("lists all melee families alphabetically before all ranged families", () => {
+		const families = WEAPON_FAMILY_IDS.map((id) => getWeaponFamily(id)!)
+		const firstRanged = families.findIndex(({ type }) => type === "ranged")
+
+		expect(firstRanged).toBeGreaterThan(0)
+		expect(families.slice(0, firstRanged).every(({ type }) => type === "melee")).toBe(true)
+		expect(families.slice(firstRanged).every(({ type }) => type === "ranged")).toBe(true)
+
+		for (const group of [families.slice(0, firstRanged), families.slice(firstRanged)]) {
+			expect(group.map(({ name }) => name)).toEqual(
+				group.map(({ name }) => name).sort((a, b) => a.localeCompare(b)),
+			)
+		}
 	})
 
 	test.each(["Cleave Damage", "Defences"])(

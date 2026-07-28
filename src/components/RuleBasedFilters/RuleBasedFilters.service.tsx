@@ -1,6 +1,7 @@
 import type { ClassType, FilterRule, FormFilterRule, ItemCategory, StoreType } from "../../types"
 import { CLASS_TYPES, defaultEmphasisColor, ITEM_CATEGORIES, STORE_TYPES } from "../../types"
 import { getWeaponFamily } from "../../weaponCatalog"
+import { CURIO_STAT_LIMITS, CURIO_STATS, type CurioStat } from "../../curioStats"
 
 export function formDataToRules(rulesFormData: FormFilterRule[]): FilterRule[] {
 	return rulesFormData.map(function (formRule: FormFilterRule): FilterRule {
@@ -13,6 +14,13 @@ export function formDataToRules(rulesFormData: FormFilterRule[]): FilterRule[] {
 					(parseFloat(statRule.min) || 0) > 0,
 			)
 			.map((statRule) => ({ id: statRule.id, min: parseFloat(statRule.min) }))
+		const curioStat = ruleStringToStringValue(formRule.curioStat, CURIO_STATS) as CurioStat
+		const parsedCurioMinimum = parseFloat(formRule.minCurioStat)
+		const curioLimits = curioStat ? CURIO_STAT_LIMITS[curioStat] : undefined
+		const minCurioStat =
+			curioStat && curioStat !== "wound" && curioLimits && parsedCurioMinimum
+				? Math.min(Math.max(parsedCurioMinimum, curioLimits.min), curioLimits.max)
+				: undefined
 		return {
 			minStats: parseFloat(formRule.minStats) || undefined,
 			minRating: parseFloat(formRule.minRating) || undefined,
@@ -22,6 +30,8 @@ export function formDataToRules(rulesFormData: FormFilterRule[]): FilterRule[] {
 			item: ruleStringToArrayValue(formRule.item),
 			weaponFamily: weaponFamily?.id,
 			weaponStats: weaponStats.length ? weaponStats : undefined,
+			curioStat,
+			minCurioStat,
 			type: ruleStringToStringValue(formRule.type, ITEM_CATEGORIES) as ItemCategory,
 			blessing: ruleStringToArrayValue(formRule.blessing),
 			perk: ruleStringToArrayValue(formRule.perk),
@@ -53,6 +63,8 @@ export function rulesToFormData(rulesData: FilterRule[]): FormFilterRule[] {
 					id,
 					min: rule.weaponStats?.find((statRule) => statRule.id === id)?.min.toString() ?? "",
 				})) ?? [],
+			curioStat: ruleValueToString(rule.curioStat, CURIO_STATS),
+			minCurioStat: rule.minCurioStat?.toString() ?? "",
 			type: ruleValueToString(rule.type, ITEM_CATEGORIES),
 			blessing: ruleValueToString(rule.blessing),
 			perk: ruleValueToString(rule.perk),
