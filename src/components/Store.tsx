@@ -57,6 +57,24 @@ export const SORT_LABELS: Record<SortOption, string> = {
 	credits: "Credits",
 }
 
+export function compareStoreOffers(
+	a: Personal,
+	b: Personal,
+	sortOption: SortOption,
+	matchesFirst: boolean,
+) {
+	if (matchesFirst) {
+		const aMatches = (a.description.overrides.filter_match ?? -1) >= 0
+		const bMatches = (b.description.overrides.filter_match ?? -1) >= 0
+
+		if (aMatches !== bMatches) {
+			return aMatches ? -1 : 1
+		}
+	}
+
+	return sortOptions[sortOption](a, b)
+}
+
 let filterOptions = {
 	none: () => () => true,
 
@@ -270,6 +288,7 @@ export function Store({
 		return <Loading />
 	}
 
+	let matchesFirst = false
 	if (enableRuleBasedFilterOption) {
 		try {
 			targets = filterRules
@@ -277,6 +296,7 @@ export function Store({
 				store.personal.map(function (offer) {
 					filterFunc(character, storeType, offer, targets, items!)
 				})
+				matchesFirst = true
 			}
 		} catch (e) {
 			console.log("Failed to parse filter rules", e)
@@ -293,7 +313,7 @@ export function Store({
 			</Text>
 			{store.personal
 				.filter(filterOptions[filterOption](items))
-				.sort(sortOptions[sortOption])
+				.sort((a, b) => compareStoreOffers(a, b, sortOption, matchesFirst))
 				.map((offer) => {
 					return (
 						<Item
