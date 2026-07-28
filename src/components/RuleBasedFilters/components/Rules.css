@@ -29,3 +29,19 @@
 	flex: 0 0 38px;
 	align-self: center;
 }
+
+.weapon-family-summary {
+	color: #bdbdbd;
+	margin: -4px 0 8px;
+}
+
+.weapon-stat-header {
+	flex-direction: column;
+	gap: 2px;
+}
+
+.weapon-statistics-wrapper {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	column-gap: 16px;
+}

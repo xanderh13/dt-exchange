@@ -11,6 +11,7 @@ import type { DeemphasizeOption } from "./Item/Item"
 import { getBlessingDescription, getPerkDescription } from "./Item/utils"
 import { calculateMaxBaseStats, findDumpStat, matchesDumpStatName } from "./Item/baseStats"
 import { calculateItemPower } from "./Item/powerLevel"
+import { getWeaponFamily, matchesWeaponFamilyStats } from "../weaponCatalog"
 
 const sortOptions = {
 	modifiersRating: (a: Personal, b: Personal) => {
@@ -108,7 +109,7 @@ function filterFunc(
 	let arr: string[]
 
 	var found = targets.findIndex(function (target) {
-		const needsMaxStats = target.dumpStat || target.stats
+		const needsMaxStats = target.dumpStat || target.stats || target.weaponStats
 		const maxStats = needsMaxStats
 			? calculateMaxBaseStats(
 					offer.description.overrides.base_stats ?? [],
@@ -134,6 +135,27 @@ function filterFunc(
 			) {
 				return false
 			}
+		}
+
+		if (target.weaponFamily) {
+			const weaponFamily = getWeaponFamily(target.weaponFamily)
+			if (!weaponFamily?.itemIds.includes(offer.description.id)) {
+				return false
+			}
+
+			if (
+				target.weaponStats?.length &&
+				!matchesWeaponFamilyStats(
+					weaponFamily,
+					maxStats ?? [],
+					target.weaponStats,
+					(statId) => localisation[statId].display_name,
+				)
+			) {
+				return false
+			}
+		} else if (target.weaponStats?.length) {
+			return false
 		}
 
 		if (target.type) {

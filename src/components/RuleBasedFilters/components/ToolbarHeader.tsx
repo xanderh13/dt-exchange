@@ -3,6 +3,7 @@ import { RuleText } from "./RuleText"
 import "./ToolbarHeader.css"
 import { defaultEmphasisColor, STORE_LABELS } from "../../../types"
 import { capitalize } from "../../../utils"
+import { getWeaponFamily, getWeaponStatLabel } from "../../../weaponCatalog"
 
 type ToolbarHeaderProps = {
 	input: FormFilterRule
@@ -13,6 +14,8 @@ export function ToolbarHeader(props: ToolbarHeaderProps) {
 		if (input.store) newHeaderAr.push(STORE_LABELS[input.store] || input.store)
 		if (input.character) newHeaderAr.push(capitalize(input.character))
 		if (input.type) newHeaderAr.push(capitalize(input.type))
+		const weaponFamily = getWeaponFamily(input.weaponFamily)
+		if (weaponFamily) newHeaderAr.push(weaponFamily.name)
 		if (input.item) newHeaderAr.push(capitalize(input.item))
 		// Blessings
 		if (input.blessing) {
@@ -48,6 +51,14 @@ export function ToolbarHeader(props: ToolbarHeaderProps) {
 			if (statRules.length) {
 				newHeaderAr.push(statRules.join(", "))
 			}
+		}
+		if (weaponFamily && input.weaponStats.length) {
+			const weaponStatRules = input.weaponStats.flatMap((statRule) => {
+				const min = parseFloat(statRule.min)
+				const label = getWeaponStatLabel(weaponFamily.id, statRule.id)
+				return min > 0 && label ? [`${label}: ${min}`] : []
+			})
+			if (weaponStatRules.length) newHeaderAr.push(weaponStatRules.join(", "))
 		}
 		// Minimums
 		if (parseFloat(input.minStats)) newHeaderAr.push(`Min Stats: ${input.minStats}`)

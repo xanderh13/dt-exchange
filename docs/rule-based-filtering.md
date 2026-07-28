@@ -75,6 +75,11 @@ Numeric filters are just normal integers, only a single value can be defined at 
   - example: `"minPerkRarity": 4`
 - `stats`: minimum maximum-potential values for named weapon modifiers. Every entry must match.
   - example: `"stats": [{ "name": "Mobility", "min": 60 }]`
+- `weaponStats`: minimum maximum-potential values for the selected `weaponFamily`. The visual
+  editor creates these entries and leaves blank modifiers unrestricted. A slot can cover renamed
+  modifiers across swappable marks, such as `Cleave Damage / Defences` on Duelling Swords.
+  - example:
+    `"weaponStats": [{ "id": "cleave-damage__defences", "min": 70 }, { "id": "finesse", "min": 80 }]`
 
 ### Strings
 
@@ -83,6 +88,9 @@ String filters allow defining only a single possible value.
 - `store`: require item to be in a specific shop
   - possible values: `credits`, `marks`
   - example: `"store": "marks"`
+- `weaponFamily`: the stable family ID selected by the visual editor. It matches every swappable
+  mark in that family by its exact Atoma item ID.
+  - example: `"weaponFamily": "combatsword_p3"` for Duelling Swords
 
 ### Meta
 
@@ -182,6 +190,24 @@ This rule will match any shop item that has sum of all stat modifiers combined 3
 ```
 
 This matches weapons whose maximum-potential distribution is exactly `80/80/80/80/60`, with Mobility as the single 60% modifier. Use `"dumpStat": "any"` if the identity of the dump stat does not matter.
+
+### Example: a nonstandard Duelling Sword split
+
+```json
+{
+	"weaponFamily": "combatsword_p3",
+	"weaponStats": [
+		{ "id": "cleave-damage__defences", "min": 70 },
+		{ "id": "penetration", "min": 70 },
+		{ "id": "finesse", "min": 80 },
+		{ "id": "damage", "min": 80 }
+	]
+}
+```
+
+This matches all Duelling Sword marks. The first requirement checks Cleave Damage on Mk II/Mk IV
+and Defences on Mk V, mirroring the game's modifier mapping when marks are swapped. Mobility is
+omitted, so any Mobility value is accepted.
 
 ### Example: any blessing with higher rarity
 

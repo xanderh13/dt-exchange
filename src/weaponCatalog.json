@@ -1,0 +1,4193 @@
+{
+	"version": 1,
+	"sources": {
+		"buildEditor": "https://darktide.gameslantern.com/api/build-editor/initialize",
+		"weapons": "https://darktide.gameslantern.com/api/weapons?page=1",
+		"localisation": "src/localisation.json"
+	},
+	"families": [
+		{
+			"id": "combatsword_p1",
+			"name": "\"Devil's Claw\" Sword",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/combatsword_p1_m3",
+				"content/items/weapons/player/melee/combatsword_p1_m2",
+				"content/items/weapons/player/melee/combatsword_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "cleave-damage",
+					"names": [
+						"Cleave Damage"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "cleave-targets",
+					"names": [
+						"Cleave Targets"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/combatsword_p1_m3",
+					"name": "Catachan Mk VII \"Devil's Claw\" Sword",
+					"statNames": [
+						"Cleave Damage",
+						"Finesse",
+						"Cleave Targets",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combatsword_p1_m2",
+					"name": "Catachan Mk IV \"Devil's Claw\" Sword",
+					"statNames": [
+						"Cleave Damage",
+						"Finesse",
+						"Cleave Targets",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combatsword_p1_m1",
+					"name": "Catachan Mk I \"Devil's Claw\" Sword",
+					"statNames": [
+						"Cleave Damage",
+						"Finesse",
+						"Cleave Targets",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "powermaul_p2",
+			"name": "Arbites Shock Maul",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/powermaul_p2_m1"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "crowd-control",
+					"names": [
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/powermaul_p2_m1",
+					"name": "Branx Mk III Arbites Shock Maul",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Crowd Control",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "powermaul_p3",
+			"name": "Arc Maul",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/powermaul_p3_m1"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "arc-efficiency",
+					"names": [
+						"Arc Efficiency"
+					]
+				},
+				{
+					"id": "crowd-control",
+					"names": [
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/powermaul_p3_m1",
+					"name": "Branx Mk III Arc Maul",
+					"statNames": [
+						"Penetration",
+						"Arc Efficiency",
+						"Crowd Control",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "arc_rifle_p1",
+			"name": "Arc Rifle",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/arc_rifle_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "reload-speed",
+					"names": [
+						"Reload Speed"
+					]
+				},
+				{
+					"id": "arc-efficiency",
+					"names": [
+						"Arc Efficiency"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/arc_rifle_p1_m1",
+					"name": "Branx Mk IV Arc Rifle",
+					"statNames": [
+						"Ammo",
+						"Reload Speed",
+						"Arc Efficiency",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "chainaxe_p1",
+			"name": "Assault Chainaxe",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/chainaxe_p1_m1",
+				"content/items/weapons/player/melee/chainaxe_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "shredder",
+					"names": [
+						"Shredder"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/chainaxe_p1_m1",
+					"name": "Orestes Mk IV Assault Chainaxe",
+					"statNames": [
+						"Shredder",
+						"Penetration",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/chainaxe_p1_m2",
+					"name": "Orestes Mk XII Assault Chainaxe",
+					"statNames": [
+						"Shredder",
+						"Penetration",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "chainsword_p1",
+			"name": "Assault Chainsword",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/chainsword_p1_m1",
+				"content/items/weapons/player/melee/chainsword_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "shredder",
+					"names": [
+						"Shredder"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/chainsword_p1_m1",
+					"name": "Cadia Mk IV Assault Chainsword",
+					"statNames": [
+						"Shredder",
+						"Penetration",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/chainsword_p1_m2",
+					"name": "Cadia Mk XIIIg Assault Chainsword",
+					"statNames": [
+						"Shredder",
+						"Penetration",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_powermaul_slabshield_p1",
+			"name": "Battle Maul & Slab Shield",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/ogryn_powermaul_slabshield_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "cleave-damage",
+					"names": [
+						"Cleave Damage"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "crowd-control",
+					"names": [
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_powermaul_slabshield_p1_m1",
+					"name": "Orox Mk II & Mk III Battle Maul & Slab Shield",
+					"statNames": [
+						"Cleave Damage",
+						"Penetration",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "forcesword_2h_p1",
+			"name": "Blaze Force Greatsword",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/forcesword_2h_p1_m2",
+				"content/items/weapons/player/melee/forcesword_2h_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "warp-resistance",
+					"names": [
+						"Warp Resistance"
+					]
+				},
+				{
+					"id": "cleave-damage",
+					"names": [
+						"Cleave Damage"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/forcesword_2h_p1_m2",
+					"name": "Covenant Mk VIII Blaze Force Greatsword",
+					"statNames": [
+						"Warp Resistance",
+						"Cleave Damage",
+						"Finesse",
+						"Defences",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/forcesword_2h_p1_m1",
+					"name": "Covenant Mk VI Blaze Force Greatsword",
+					"statNames": [
+						"Warp Resistance",
+						"Cleave Damage",
+						"Finesse",
+						"Defences",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "forcesword_p1",
+			"name": "Blaze Force Sword",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/forcesword_p1_m1",
+				"content/items/weapons/player/melee/forcesword_p1_m2",
+				"content/items/weapons/player/melee/forcesword_p1_m3"
+			],
+			"stats": [
+				{
+					"id": "warp-resistance",
+					"names": [
+						"Warp Resistance"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/forcesword_p1_m1",
+					"name": "Obscurus Mk II Blaze Force Sword",
+					"statNames": [
+						"Warp Resistance",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/forcesword_p1_m2",
+					"name": "Deimos Mk IV Blaze Force Sword",
+					"statNames": [
+						"Warp Resistance",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/forcesword_p1_m3",
+					"name": "Illisi Mk V Blaze Force Sword",
+					"statNames": [
+						"Warp Resistance",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "boltpistol_p1",
+			"name": "Bolt Pistol",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/boltpistol_p1_m1",
+				"content/items/weapons/player/ranged/boltpistol_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "collateral",
+					"names": [
+						"Collateral"
+					]
+				},
+				{
+					"id": "reload-speed",
+					"names": [
+						"Reload Speed"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/boltpistol_p1_m1",
+					"name": "Godwyn-Branx Mk IV Bolt Pistol",
+					"statNames": [
+						"Collateral",
+						"Reload Speed",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/boltpistol_p1_m2",
+					"name": "Godwyn-Branx Mk VI Bolt Pistol",
+					"statNames": [
+						"Collateral",
+						"Reload Speed",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "saw_p1",
+			"name": "Bone Saw",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/saw_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "critical-bonus",
+					"names": [
+						"Critical Bonus"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/saw_p1_m1",
+					"name": "Chirurgeon's Mk IV Bone Saw",
+					"statNames": [
+						"First Target",
+						"Finesse",
+						"Critical Bonus",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "autogun_p2",
+			"name": "Braced Autogun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/autogun_p2_m3",
+				"content/items/weapons/player/ranged/autogun_p2_m1",
+				"content/items/weapons/player/ranged/autogun_p2_m2"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "collateral__stopping-power",
+					"names": [
+						"Stopping Power",
+						"Collateral"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/autogun_p2_m3",
+					"name": "Agripinaa Mk VIII Braced Autogun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/autogun_p2_m1",
+					"name": "Vraks Mk II Braced Autogun",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/autogun_p2_m2",
+					"name": "Graia Mk IV Braced Autogun",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_club_p2",
+			"name": "Bully Club",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/ogryn_club_p2_m1",
+				"content/items/weapons/player/melee/ogryn_club_p2_m2",
+				"content/items/weapons/player/melee/ogryn_club_p2_m3"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_club_p2_m1",
+					"name": "\"Brunt Special\" Mk I Bully Club",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_club_p2_m2",
+					"name": "\"Brunt's Pride\" Mk II Bully Club",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_club_p2_m3",
+					"name": "\"Brunt's Basher\" Mk IIIb Bully Club",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_combatblade_p1",
+			"name": "Cleaver",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/ogryn_combatblade_p1_m2",
+				"content/items/weapons/player/melee/ogryn_combatblade_p1_m3",
+				"content/items/weapons/player/melee/ogryn_combatblade_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "cleave-damage",
+					"names": [
+						"Cleave Damage"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_combatblade_p1_m2",
+					"name": "Bull Butcher Mk III Cleaver",
+					"statNames": [
+						"Cleave Damage",
+						"Penetration",
+						"First Target",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_combatblade_p1_m3",
+					"name": "Krourk Mk IV Cleaver",
+					"statNames": [
+						"Cleave Damage",
+						"Penetration",
+						"First Target",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_combatblade_p1_m1",
+					"name": "Krourk Mk VI Cleaver",
+					"statNames": [
+						"Cleave Damage",
+						"Penetration",
+						"First Target",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "combataxe_p1",
+			"name": "Combat Axe",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/combataxe_p1_m1",
+				"content/items/weapons/player/melee/combataxe_p1_m2",
+				"content/items/weapons/player/melee/combataxe_p1_m3"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "cleave-targets__finesse",
+					"names": [
+						"Finesse",
+						"Cleave Targets"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/combataxe_p1_m1",
+					"name": "Rashad Mk III Combat Axe",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combataxe_p1_m2",
+					"name": "Antax Mk V Combat Axe",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Cleave Targets",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combataxe_p1_m3",
+					"name": "Achlys Mk VIII Combat Axe",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "combatknife_p1",
+			"name": "Combat Blade",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/combatknife_p1_m1",
+				"content/items/weapons/player/melee/combatknife_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/combatknife_p1_m1",
+					"name": "Catachan Mk III Combat Blade",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combatknife_p1_m2",
+					"name": "Catachan Mk VI Combat Blade",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "shotgun_p1",
+			"name": "Combat Shotgun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/shotgun_p1_m1",
+				"content/items/weapons/player/ranged/shotgun_p1_m2",
+				"content/items/weapons/player/ranged/shotgun_p1_m3"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/shotgun_p1_m1",
+					"name": "Zarona Mk VI Combat Shotgun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/shotgun_p1_m2",
+					"name": "Agripinaa Mk VII Combat Shotgun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/shotgun_p1_m3",
+					"name": "Accatran Mk IX Combat Shotgun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "crowbar_p1",
+			"name": "Crowbar",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/crowbar_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/crowbar_p1_m1",
+					"name": "Enginseer's Mk VI Crowbar",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "powermaul_2h_p1",
+			"name": "Crusher",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/powermaul_2h_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "power-output",
+					"names": [
+						"Power Output"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "crowd-control",
+					"names": [
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/powermaul_2h_p1_m1",
+					"name": "Indignatus Mk IVe Crusher",
+					"statNames": [
+						"Power Output",
+						"Penetration",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_pickaxe_2h_p1",
+			"name": "Delver's Pickaxe",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/ogryn_pickaxe_2h_p1_m2",
+				"content/items/weapons/player/melee/ogryn_pickaxe_2h_p1_m3",
+				"content/items/weapons/player/melee/ogryn_pickaxe_2h_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "crowd-control__first-target",
+					"names": [
+						"First Target",
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "cleave-damage__cleave-targets",
+					"names": [
+						"Cleave Targets",
+						"Cleave Damage"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_pickaxe_2h_p1_m2",
+					"name": "Borovian Mk III Delver's Pickaxe",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Cleave Targets",
+						"Defences",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_pickaxe_2h_p1_m3",
+					"name": "Karsolas Mk II Delver's Pickaxe",
+					"statNames": [
+						"Cleave Damage",
+						"Penetration",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_pickaxe_2h_p1_m1",
+					"name": "Branx Mk Ia Delver's Pickaxe",
+					"statNames": [
+						"Cleave Damage",
+						"Penetration",
+						"First Target",
+						"Defences",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "shotgun_p2",
+			"name": "Double-Barrelled Shotgun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/shotgun_p2_m1"
+			],
+			"stats": [
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "reload-speed",
+					"names": [
+						"Reload Speed"
+					]
+				},
+				{
+					"id": "range",
+					"names": [
+						"Range"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/shotgun_p2_m1",
+					"name": "Crucis Mk XI Double-Barrelled Shotgun",
+					"statNames": [
+						"Stopping Power",
+						"Reload Speed",
+						"Range",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "dual_autopistols_p1",
+			"name": "Dual Autopistols",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/dual_autopistols_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "collateral",
+					"names": [
+						"Collateral"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/dual_autopistols_p1_m1",
+					"name": "Branx MkIII Dual Autopistols",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stopping Power",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "dual_stubpistols_p1",
+			"name": "Dual Stub Pistols",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/dual_stubpistols_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "collateral",
+					"names": [
+						"Collateral"
+					]
+				},
+				{
+					"id": "critical-bonus",
+					"names": [
+						"Critical Bonus"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/dual_stubpistols_p1_m1",
+					"name": "Branx MkVIII Dual Stub Pistols",
+					"statNames": [
+						"Penetration",
+						"Collateral",
+						"Critical Bonus",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "combatsword_p3",
+			"name": "Duelling Sword",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/combatsword_p3_m2",
+				"content/items/weapons/player/melee/combatsword_p3_m1",
+				"content/items/weapons/player/melee/combatsword_p3_m3"
+			],
+			"stats": [
+				{
+					"id": "cleave-damage__defences",
+					"names": [
+						"Cleave Damage",
+						"Defences"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/combatsword_p3_m2",
+					"name": "Maccabian Mk IV Duelling Sword",
+					"statNames": [
+						"Cleave Damage",
+						"Penetration",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combatsword_p3_m1",
+					"name": "Maccabian Mk II Duelling Sword",
+					"statNames": [
+						"Cleave Damage",
+						"Penetration",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combatsword_p3_m3",
+					"name": "Maccabian Mk V Duelling Sword",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "forcestaff_p3",
+			"name": "Electrokinetic Force Staff",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/forcestaff_p3_m1"
+			],
+			"stats": [
+				{
+					"id": "warp-resistance",
+					"names": [
+						"Warp Resistance"
+					]
+				},
+				{
+					"id": "quell-speed",
+					"names": [
+						"Quell Speed"
+					]
+				},
+				{
+					"id": "charge-rate",
+					"names": [
+						"Charge Rate"
+					]
+				},
+				{
+					"id": "critical-bonus",
+					"names": [
+						"Critical Bonus"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/forcestaff_p3_m1",
+					"name": "Nomanus Mk VI Electrokinetic Force Staff",
+					"statNames": [
+						"Warp Resistance",
+						"Quell Speed",
+						"Charge Rate",
+						"Critical Bonus",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "shotgun_p4",
+			"name": "Exterminator Shotgun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/shotgun_p4_m1",
+				"content/items/weapons/player/ranged/shotgun_p4_m2"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/shotgun_p4_m1",
+					"name": "Exaction Mk III Exterminator Shotgun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/shotgun_p4_m2",
+					"name": "Exaction Mk VIII Exterminator Shotgun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "galvanic_rifle_p1",
+			"name": "Galvanic Rifle",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/galvanic_rifle_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/galvanic_rifle_p1_m1",
+					"name": "Branx Mk CV Galvanic Rifle",
+					"statNames": [
+						"Ammo",
+						"Finesse",
+						"Stopping Power",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_gauntlet_p1",
+			"name": "Grenadier Gauntlet",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/ogryn_gauntlet_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "blast-radius",
+					"names": [
+						"Blast Radius"
+					]
+				},
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "penetration-blast",
+					"names": [
+						"Penetration (Blast)"
+					]
+				},
+				{
+					"id": "blast-damage",
+					"names": [
+						"Blast Damage"
+					]
+				},
+				{
+					"id": "melee-damage",
+					"names": [
+						"Melee Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_gauntlet_p1_m1",
+					"name": "Blastoom Mk III Grenadier Gauntlet",
+					"statNames": [
+						"Blast Radius",
+						"Ammo",
+						"Penetration (Blast)",
+						"Blast Damage",
+						"Melee Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "chainsword_2h_p1",
+			"name": "Heavy Eviscerator",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/chainsword_2h_p1_m1",
+				"content/items/weapons/player/melee/chainsword_2h_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "shredder",
+					"names": [
+						"Shredder"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "cleave-targets",
+					"names": [
+						"Cleave Targets"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/chainsword_2h_p1_m1",
+					"name": "Tigrus Mk III Heavy Eviscerator",
+					"statNames": [
+						"Shredder",
+						"Penetration",
+						"Cleave Targets",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/chainsword_2h_p1_m2",
+					"name": "Tigrus Mk XV Heavy Eviscerator",
+					"statNames": [
+						"Shredder",
+						"Penetration",
+						"Cleave Targets",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "laspistol_p1",
+			"name": "Heavy Laspistol",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/laspistol_p1_m3",
+				"content/items/weapons/player/ranged/laspistol_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/laspistol_p1_m3",
+					"name": "Kantrael Mk X Heavy Laspistol",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/laspistol_p1_m1",
+					"name": "Accatran MG Mk II Heavy Laspistol",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_heavystubber_p2",
+			"name": "Heavy Stubber",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/ogryn_heavystubber_p2_m2",
+				"content/items/weapons/player/ranged/ogryn_heavystubber_p2_m3",
+				"content/items/weapons/player/ranged/ogryn_heavystubber_p2_m1"
+			],
+			"stats": [
+				{
+					"id": "collateral",
+					"names": [
+						"Collateral"
+					]
+				},
+				{
+					"id": "critical-bonus__stopping-power",
+					"names": [
+						"Critical Bonus",
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "range",
+					"names": [
+						"Range"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_heavystubber_p2_m2",
+					"name": "Gorgonum Mk IIIa Heavy Stubber",
+					"statNames": [
+						"Collateral",
+						"Critical Bonus",
+						"Stability",
+						"Range",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_heavystubber_p2_m3",
+					"name": "Achlys Mk II Heavy Stubber",
+					"statNames": [
+						"Collateral",
+						"Critical Bonus",
+						"Stability",
+						"Range",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_heavystubber_p2_m1",
+					"name": "Krourk Mk IIa Heavy Stubber",
+					"statNames": [
+						"Collateral",
+						"Stopping Power",
+						"Stability",
+						"Range",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "combatsword_p2",
+			"name": "Heavy Sword",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/combatsword_p2_m2",
+				"content/items/weapons/player/melee/combatsword_p2_m1",
+				"content/items/weapons/player/melee/combatsword_p2_m3"
+			],
+			"stats": [
+				{
+					"id": "cleave-damage",
+					"names": [
+						"Cleave Damage"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "cleave-targets",
+					"names": [
+						"Cleave Targets"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/combatsword_p2_m2",
+					"name": "Turtolsky Mk VII Heavy Sword",
+					"statNames": [
+						"Cleave Damage",
+						"First Target",
+						"Cleave Targets",
+						"Defences",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combatsword_p2_m1",
+					"name": "Turtolsky Mk VI Heavy Sword",
+					"statNames": [
+						"Cleave Damage",
+						"First Target",
+						"Cleave Targets",
+						"Defences",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combatsword_p2_m3",
+					"name": "Turtolsky Mk IX Heavy Sword",
+					"statNames": [
+						"Cleave Damage",
+						"First Target",
+						"Cleave Targets",
+						"Defences",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "lasgun_p2",
+			"name": "Helbore Lasgun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/lasgun_p2_m3",
+				"content/items/weapons/player/ranged/lasgun_p2_m2",
+				"content/items/weapons/player/ranged/lasgun_p2_m1"
+			],
+			"stats": [
+				{
+					"id": "charge-rate",
+					"names": [
+						"Charge Rate"
+					]
+				},
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/lasgun_p2_m3",
+					"name": "Lucius Mk IV Helbore Lasgun",
+					"statNames": [
+						"Charge Rate",
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/lasgun_p2_m2",
+					"name": "Lucius MK V Helbore Lasgun",
+					"statNames": [
+						"Charge Rate",
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/lasgun_p2_m1",
+					"name": "Lucius MK IIIa Helbore Lasgun",
+					"statNames": [
+						"Charge Rate",
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "autogun_p1",
+			"name": "Infantry Autogun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/autogun_p1_m3",
+				"content/items/weapons/player/ranged/autogun_p1_m2",
+				"content/items/weapons/player/ranged/autogun_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/autogun_p1_m3",
+					"name": "Columnus Mk VIII Infantry Autogun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/autogun_p1_m2",
+					"name": "Vraks Mk V Infantry Autogun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/autogun_p1_m1",
+					"name": "Agripinaa Mk I Infantry Autogun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "lasgun_p1",
+			"name": "Infantry Lasgun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/lasgun_p1_m2",
+				"content/items/weapons/player/ranged/lasgun_p1_m3",
+				"content/items/weapons/player/ranged/lasgun_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/lasgun_p1_m2",
+					"name": "Kantrael Mk IIb Infantry Lasgun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/lasgun_p1_m3",
+					"name": "Kantrael Mk IX Infantry Lasgun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/lasgun_p1_m1",
+					"name": "Kantrael Mk VII Infantry Lasgun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "forcestaff_p2",
+			"name": "Inferno Force Staff",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/forcestaff_p2_m1"
+			],
+			"stats": [
+				{
+					"id": "warp-resistance",
+					"names": [
+						"Warp Resistance"
+					]
+				},
+				{
+					"id": "quell-speed",
+					"names": [
+						"Quell Speed"
+					]
+				},
+				{
+					"id": "burn",
+					"names": [
+						"Burn"
+					]
+				},
+				{
+					"id": "cloud-radius",
+					"names": [
+						"Cloud Radius"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/forcestaff_p2_m1",
+					"name": "Rifthaven Mk II Inferno Force Staff",
+					"statNames": [
+						"Warp Resistance",
+						"Quell Speed",
+						"Burn",
+						"Cloud Radius",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_thumper_p1--kickback",
+			"name": "Kickback",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/ogryn_thumper_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "reload-speed",
+					"names": [
+						"Reload Speed"
+					]
+				},
+				{
+					"id": "range",
+					"names": [
+						"Range"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_thumper_p1_m1",
+					"name": "Lorenz Mk V Kickback",
+					"statNames": [
+						"Stopping Power",
+						"Reload Speed",
+						"Range",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_club_p1",
+			"name": "Latrine Shovel",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/ogryn_club_p1_m1",
+				"content/items/weapons/player/melee/ogryn_club_p1_m3",
+				"content/items/weapons/player/melee/ogryn_club_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "crowd-control",
+					"names": [
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_club_p1_m1",
+					"name": "Brute-Brainer Mk III Latrine Shovel",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_club_p1_m3",
+					"name": "Brute-Brainer Mk V Latrine Shovel",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_club_p1_m2",
+					"name": "Brute-Brainer Mk XIX Latrine Shovel",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "powersword_p3",
+			"name": "Mechanicus Power Sword",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/powersword_p3_m1"
+			],
+			"stats": [
+				{
+					"id": "power-output",
+					"names": [
+						"Power Output"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/powersword_p3_m1",
+					"name": "Branx Mk VI Mechanicus Power Sword",
+					"statNames": [
+						"Power Output",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "needlepistol_p1",
+			"name": "Needle Pistol",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/needlepistol_p1_m1",
+				"content/items/weapons/player/ranged/needlepistol_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/needlepistol_p1_m1",
+					"name": "Branx MkVI Needle Pistol",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/needlepistol_p1_m2",
+					"name": "Branx MKII Needle Pistol",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "transonic_sword_transonic_knife_p1",
+			"name": "Paired Transonic Blades",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/transonic_sword_transonic_knife_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "critical-bonus",
+					"names": [
+						"Critical Bonus"
+					]
+				},
+				{
+					"id": "cleave-efficiency",
+					"names": [
+						"Cleave Efficiency"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/transonic_sword_transonic_knife_p1_m1",
+					"name": "Branx Mk XI Paired Transonic Blades",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Critical Bonus",
+						"Cleave Efficiency",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "phosphor_pistol_p1",
+			"name": "Phosphor Blast Pistol",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/phosphor_pistol_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "critical-bonus",
+					"names": [
+						"Critical Bonus"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/phosphor_pistol_p1_m1",
+					"name": "Branx Mk XI Phosphor Blast Pistol",
+					"statNames": [
+						"Ammo",
+						"Penetration",
+						"Critical Bonus",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "plasmagun_p1",
+			"name": "Plasma Gun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/plasmagun_p1_m2",
+				"content/items/weapons/player/ranged/plasmagun_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "charge-rate",
+					"names": [
+						"Charge Rate"
+					]
+				},
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "thermal-resistance",
+					"names": [
+						"Thermal Resistance"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/plasmagun_p1_m2",
+					"name": "M35 Magnacore Mk III Plasma Gun",
+					"statNames": [
+						"Charge Rate",
+						"Ammo",
+						"Stopping Power",
+						"Thermal Resistance",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/plasmagun_p1_m1",
+					"name": "M35 Magnacore Mk II Plasma Gun",
+					"statNames": [
+						"Charge Rate",
+						"Ammo",
+						"Stopping Power",
+						"Thermal Resistance",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "powersword_p2",
+			"name": "Power Falchion",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/powersword_p2_m2",
+				"content/items/weapons/player/melee/powersword_p2_m1"
+			],
+			"stats": [
+				{
+					"id": "power-output",
+					"names": [
+						"Power Output"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "heat-management",
+					"names": [
+						"Heat Management"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/powersword_p2_m2",
+					"name": "Lawbringer Mk IIb Power Falchion",
+					"statNames": [
+						"Power Output",
+						"Finesse",
+						"Heat Management",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/powersword_p2_m1",
+					"name": "Aridin Mk I Power Falchion",
+					"statNames": [
+						"Power Output",
+						"Finesse",
+						"Heat Management",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_powermaul_p1",
+			"name": "Power Maul",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/ogryn_powermaul_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "power-output",
+					"names": [
+						"Power Output"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "crowd-control",
+					"names": [
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/ogryn_powermaul_p1_m1",
+					"name": "Achlys Mk I Power Maul",
+					"statNames": [
+						"Power Output",
+						"Penetration",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "powersword_p1",
+			"name": "Power Sword",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/powersword_p1_m1",
+				"content/items/weapons/player/melee/powersword_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "cleave-damage",
+					"names": [
+						"Cleave Damage"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "cleave-targets",
+					"names": [
+						"Cleave Targets"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/powersword_p1_m1",
+					"name": "Scandar Mk III Power Sword",
+					"statNames": [
+						"Cleave Damage",
+						"Finesse",
+						"Cleave Targets",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/powersword_p1_m2",
+					"name": "Achlys Mk VI Power Sword",
+					"statNames": [
+						"Cleave Damage",
+						"Finesse",
+						"Cleave Targets",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "flamer_p1",
+			"name": "Purgation Flamer",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/flamer_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "burn",
+					"names": [
+						"Burn"
+					]
+				},
+				{
+					"id": "cloud-radius",
+					"names": [
+						"Cloud Radius"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/flamer_p1_m1",
+					"name": "Artemia Mk III Purgation Flamer",
+					"statNames": [
+						"Ammo",
+						"Burn",
+						"Cloud Radius",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "stubrevolver_p1",
+			"name": "Quickdraw Stub Revolver",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/stubrevolver_p1_m1",
+				"content/items/weapons/player/ranged/stubrevolver_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "reload-speed",
+					"names": [
+						"Reload Speed"
+					]
+				},
+				{
+					"id": "critical-bonus",
+					"names": [
+						"Critical Bonus"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/stubrevolver_p1_m1",
+					"name": "Zarona Mk IIa Quickdraw Stub Revolver",
+					"statNames": [
+						"Penetration",
+						"Reload Speed",
+						"Critical Bonus",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/stubrevolver_p1_m2",
+					"name": "Agripinaa Mk XIV Quickdraw Stub Revolver",
+					"statNames": [
+						"Penetration",
+						"Reload Speed",
+						"Critical Bonus",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "lasgun_p3",
+			"name": "Recon Lasgun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/lasgun_p3_m3",
+				"content/items/weapons/player/ranged/lasgun_p3_m1",
+				"content/items/weapons/player/ranged/lasgun_p3_m2"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "collateral",
+					"names": [
+						"Collateral"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/lasgun_p3_m3",
+					"name": "Accatran Mk XIV Recon Lasgun",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/lasgun_p3_m1",
+					"name": "Accatran Mk VIc Recon Lasgun",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/lasgun_p3_m2",
+					"name": "Accatran Mk XII Recon Lasgun",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "powersword_2h_p1",
+			"name": "Relic Blade",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/powersword_2h_p1_m2",
+				"content/items/weapons/player/melee/powersword_2h_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "power-output",
+					"names": [
+						"Power Output"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "heat-management",
+					"names": [
+						"Heat Management"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/powersword_2h_p1_m2",
+					"name": "Munitorum Mk II Relic Blade",
+					"statNames": [
+						"Power Output",
+						"Finesse",
+						"Heat Management",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/powersword_2h_p1_m1",
+					"name": "Munitorum Mk X Relic Blade",
+					"statNames": [
+						"Power Output",
+						"Finesse",
+						"Heat Management",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_rippergun_p1",
+			"name": "Ripper Gun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/ogryn_rippergun_p1_m1",
+				"content/items/weapons/player/ranged/ogryn_rippergun_p1_m3",
+				"content/items/weapons/player/ranged/ogryn_rippergun_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "collateral",
+					"names": [
+						"Collateral"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "range",
+					"names": [
+						"Range"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_rippergun_p1_m1",
+					"name": "Foe-Rend Mk II Ripper Gun",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Range",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_rippergun_p1_m3",
+					"name": "Foe-Rend Mk VI Ripper Gun",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Range",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_rippergun_p1_m2",
+					"name": "Foe-Rend Mk V Ripper Gun",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Range",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_thumper_p1--rumbler",
+			"name": "Rumbler",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/ogryn_thumper_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "blast-radius",
+					"names": [
+						"Blast Radius"
+					]
+				},
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "penetration-blast",
+					"names": [
+						"Penetration (Blast)"
+					]
+				},
+				{
+					"id": "blast-damage",
+					"names": [
+						"Blast Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_thumper_p1_m2",
+					"name": "Lorenz Mk VI Rumbler",
+					"statNames": [
+						"Blast Radius",
+						"Ammo",
+						"Penetration (Blast)",
+						"Blast Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "combataxe_p3",
+			"name": "Sapper Shovel",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/combataxe_p3_m1",
+				"content/items/weapons/player/melee/combataxe_p3_m3",
+				"content/items/weapons/player/melee/combataxe_p3_m2"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/combataxe_p3_m1",
+					"name": "Munitorum Mk I Sapper Shovel",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combataxe_p3_m3",
+					"name": "Munitorum Mk VII Sapper Shovel",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combataxe_p3_m2",
+					"name": "Munitorum Mk III Sapper Shovel",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Defences",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "dual_shivs_p1",
+			"name": "Shivs",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/dual_shivs_p1_m2",
+				"content/items/weapons/player/melee/dual_shivs_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/dual_shivs_p1_m2",
+					"name": "Improvised Mk III Shivs",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/dual_shivs_p1_m1",
+					"name": "Improvised Mk I Shivs",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Finesse",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "powermaul_p1",
+			"name": "Shock Maul",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/powermaul_p1_m2",
+				"content/items/weapons/player/melee/powermaul_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "crowd-control",
+					"names": [
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/powermaul_p1_m2",
+					"name": "Munitorum Mk III Shock Maul",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Crowd Control",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/powermaul_p1_m1",
+					"name": "Agni Mk Ia Shock Maul",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Crowd Control",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "powermaul_shield_p1",
+			"name": "Shock Maul and Suppression Shield",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/powermaul_shield_p1_m2",
+				"content/items/weapons/player/melee/powermaul_shield_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "power-output",
+					"names": [
+						"Power Output"
+					]
+				},
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "crowd-control",
+					"names": [
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/powermaul_shield_p1_m2",
+					"name": "Branx Mk XI Shock Maul and Suppression Shield",
+					"statNames": [
+						"Power Output",
+						"Penetration",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/powermaul_shield_p1_m1",
+					"name": "Branx Mk VI Shock Maul and Suppression Shield",
+					"statNames": [
+						"Power Output",
+						"Penetration",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "autopistol_p1",
+			"name": "Shredder Autopistol",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/autopistol_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "collateral",
+					"names": [
+						"Collateral"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/autopistol_p1_m1",
+					"name": "Ius Mk IV Shredder Autopistol",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stopping Power",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "bolter_p1",
+			"name": "Spearhead Boltgun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/bolter_p1_m2",
+				"content/items/weapons/player/ranged/bolter_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "collateral",
+					"names": [
+						"Collateral"
+					]
+				},
+				{
+					"id": "reload-speed",
+					"names": [
+						"Reload Speed"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/bolter_p1_m2",
+					"name": "Locke Mk III Spearhead Boltgun",
+					"statNames": [
+						"Collateral",
+						"Reload Speed",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/bolter_p1_m1",
+					"name": "Locke Mk IIb Spearhead Boltgun",
+					"statNames": [
+						"Collateral",
+						"Reload Speed",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "shotpistol_shield_p1",
+			"name": "Subductor Shotpistol and Riot Shield",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/shotpistol_shield_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "reload-speed",
+					"names": [
+						"Reload Speed"
+					]
+				},
+				{
+					"id": "critical-bonus",
+					"names": [
+						"Critical Bonus"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/shotpistol_shield_p1_m1",
+					"name": "Judgement Mk IV Subductor Shotpistol and Riot Shield",
+					"statNames": [
+						"Penetration",
+						"Reload Speed",
+						"Critical Bonus",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "combataxe_p2",
+			"name": "Tactical Axe",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/combataxe_p2_m3",
+				"content/items/weapons/player/melee/combataxe_p2_m1",
+				"content/items/weapons/player/melee/combataxe_p2_m2"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "finesse",
+					"names": [
+						"Finesse"
+					]
+				},
+				{
+					"id": "critical-bonus",
+					"names": [
+						"Critical Bonus"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/combataxe_p2_m3",
+					"name": "Atrox Mk VII Tactical Axe",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Critical Bonus",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combataxe_p2_m1",
+					"name": "Atrox Mk II Tactical Axe",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Critical Bonus",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/combataxe_p2_m2",
+					"name": "Atrox Mk IV Tactical Axe",
+					"statNames": [
+						"Penetration",
+						"Finesse",
+						"Critical Bonus",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "thunderhammer_2h_p1",
+			"name": "Thunder Hammer",
+			"type": "melee",
+			"itemIds": [
+				"content/items/weapons/player/melee/thunderhammer_2h_p1_m1",
+				"content/items/weapons/player/melee/thunderhammer_2h_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "penetration",
+					"names": [
+						"Penetration"
+					]
+				},
+				{
+					"id": "first-target",
+					"names": [
+						"First Target"
+					]
+				},
+				{
+					"id": "crowd-control",
+					"names": [
+						"Crowd Control"
+					]
+				},
+				{
+					"id": "defences",
+					"names": [
+						"Defences"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/melee/thunderhammer_2h_p1_m1",
+					"name": "Crucis Mk II Thunder Hammer",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/melee/thunderhammer_2h_p1_m2",
+					"name": "Ironhelm Mk IV Thunder Hammer",
+					"statNames": [
+						"Penetration",
+						"First Target",
+						"Crowd Control",
+						"Defences",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "ogryn_heavystubber_p1",
+			"name": "Twin-Linked Heavy Stubber",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/ogryn_heavystubber_p1_m1",
+				"content/items/weapons/player/ranged/ogryn_heavystubber_p1_m3",
+				"content/items/weapons/player/ranged/ogryn_heavystubber_p1_m2"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "collateral",
+					"names": [
+						"Collateral"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "range",
+					"names": [
+						"Range"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_heavystubber_p1_m1",
+					"name": "Krourk Mk V Twin-Linked Heavy Stubber",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Range",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_heavystubber_p1_m3",
+					"name": "Achlys Mk VII Twin-Linked Heavy Stubber",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Range",
+						"Damage"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/ogryn_heavystubber_p1_m2",
+					"name": "Gorgonum Mk IV Twin-Linked Heavy Stubber",
+					"statNames": [
+						"Ammo",
+						"Collateral",
+						"Stability",
+						"Range",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "autogun_p3",
+			"name": "Vigilant Autogun",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/autogun_p3_m3",
+				"content/items/weapons/player/ranged/autogun_p3_m2",
+				"content/items/weapons/player/ranged/autogun_p3_m1"
+			],
+			"stats": [
+				{
+					"id": "ammo",
+					"names": [
+						"Ammo"
+					]
+				},
+				{
+					"id": "stopping-power",
+					"names": [
+						"Stopping Power"
+					]
+				},
+				{
+					"id": "stability",
+					"names": [
+						"Stability"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				},
+				{
+					"id": "mobility",
+					"names": [
+						"Mobility"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/autogun_p3_m3",
+					"name": "Agripinaa Mk IX Vigilant Autogun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/autogun_p3_m2",
+					"name": "Graia Mk VII Vigilant Autogun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				},
+				{
+					"itemId": "content/items/weapons/player/ranged/autogun_p3_m1",
+					"name": "Columnus Mk III Vigilant Autogun",
+					"statNames": [
+						"Ammo",
+						"Stopping Power",
+						"Stability",
+						"Damage",
+						"Mobility"
+					]
+				}
+			]
+		},
+		{
+			"id": "forcestaff_p1",
+			"name": "Voidblast Force Staff",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/forcestaff_p1_m1"
+			],
+			"stats": [
+				{
+					"id": "warp-resistance",
+					"names": [
+						"Warp Resistance"
+					]
+				},
+				{
+					"id": "quell-speed",
+					"names": [
+						"Quell Speed"
+					]
+				},
+				{
+					"id": "charge-rate",
+					"names": [
+						"Charge Rate"
+					]
+				},
+				{
+					"id": "blast-radius",
+					"names": [
+						"Blast Radius"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/forcestaff_p1_m1",
+					"name": "Equinox Mk III Voidblast Force Staff",
+					"statNames": [
+						"Warp Resistance",
+						"Quell Speed",
+						"Charge Rate",
+						"Blast Radius",
+						"Damage"
+					]
+				}
+			]
+		},
+		{
+			"id": "forcestaff_p4",
+			"name": "Voidstrike Force Staff",
+			"type": "ranged",
+			"itemIds": [
+				"content/items/weapons/player/ranged/forcestaff_p4_m1"
+			],
+			"stats": [
+				{
+					"id": "warp-resistance",
+					"names": [
+						"Warp Resistance"
+					]
+				},
+				{
+					"id": "quell-speed",
+					"names": [
+						"Quell Speed"
+					]
+				},
+				{
+					"id": "charge-rate",
+					"names": [
+						"Charge Rate"
+					]
+				},
+				{
+					"id": "blast-radius",
+					"names": [
+						"Blast Radius"
+					]
+				},
+				{
+					"id": "damage",
+					"names": [
+						"Damage"
+					]
+				}
+			],
+			"marks": [
+				{
+					"itemId": "content/items/weapons/player/ranged/forcestaff_p4_m1",
+					"name": "Equinox Mk IV Voidstrike Force Staff",
+					"statNames": [
+						"Warp Resistance",
+						"Quell Speed",
+						"Charge Rate",
+						"Blast Radius",
+						"Damage"
+					]
+				}
+			]
+		}
+	]
+}

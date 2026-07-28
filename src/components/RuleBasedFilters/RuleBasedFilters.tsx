@@ -17,6 +17,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage"
 import { DragHandleIcon } from "./components/Icons/DragHandle"
 import { Rule } from "./components/Rule"
 import { SplitRuleWrapper } from "./components/SplitRuleWrapper"
+import { getWeaponFamily } from "../../weaponCatalog"
 
 type Props = {
 	DE: DeemphasizeOption
@@ -30,6 +31,8 @@ export function RuleBasedFilters(props: Props) {
 		return {
 			character: "",
 			item: "",
+			weaponFamily: "",
+			weaponStats: [],
 			type: "",
 			blessing: "",
 			dumpStat: "",
@@ -85,6 +88,37 @@ export function RuleBasedFilters(props: Props) {
 		const eventTarget: HTMLInputElement | HTMLSelectElement = event.target as
 			| HTMLInputElement
 			| HTMLSelectElement
+		if (eventTarget.name === "weaponFamily") {
+			const family = getWeaponFamily(eventTarget.value)
+			data[index] = {
+				...data[index]!,
+				weaponFamily: family?.id ?? "",
+				weaponStats:
+					family?.stats.map(({ id }) => ({
+						id,
+						min: "",
+					})) ?? [],
+				type: family?.type ?? data[index]!.type,
+				stats: family ? [] : data[index]!.stats,
+			}
+			setRuleFields(data)
+			if (!ruleFormDirty) setRuleFormDirty(true)
+			return
+		}
+		if (eventTarget.name === "type") {
+			const family = getWeaponFamily(data[index]!.weaponFamily)
+			const familyDoesNotFit =
+				!!family && !!eventTarget.value && family.type !== eventTarget.value
+			data[index] = {
+				...data[index]!,
+				type: eventTarget.value,
+				weaponFamily: familyDoesNotFit ? "" : data[index]!.weaponFamily,
+				weaponStats: familyDoesNotFit ? [] : data[index]!.weaponStats,
+			}
+			setRuleFields(data)
+			if (!ruleFormDirty) setRuleFormDirty(true)
+			return
+		}
 		// @ts-ignore
 		data[index][eventTarget.name] = eventTarget.value
 		setRuleFields(data)
@@ -97,6 +131,14 @@ export function RuleBasedFilters(props: Props) {
 		const eventNameDir: string = eventTarget.name.split("-").pop()!
 		// @ts-ignore
 		data[index].stats[statIndex][eventNameDir] = eventTarget.value
+		setRuleFields(data)
+		if (!ruleFormDirty) setRuleFormDirty(true)
+	}
+
+	function handleChangeWeaponStatistic(index: number, statIndex: number, event: FormEvent) {
+		let data: FormFilterRule[] = [...ruleFields]
+		const eventTarget = event.target as HTMLInputElement
+		data[index]!.weaponStats[statIndex]!.min = eventTarget.value
 		setRuleFields(data)
 		if (!ruleFormDirty) setRuleFormDirty(true)
 	}
@@ -225,6 +267,7 @@ export function RuleBasedFilters(props: Props) {
 											input={input}
 											onChange={handleFormChange}
 											onStatisticChange={handleChangeStatistic}
+											onWeaponStatisticChange={handleChangeWeaponStatistic}
 											onStatisticAdd={handleAddStatistic}
 											onStatisticRemove={handleRemoveStatistic}
 										/>

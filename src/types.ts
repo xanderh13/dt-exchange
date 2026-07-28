@@ -221,6 +221,8 @@ export const ITEM_OPTIONS = Object.values(ITEM_CATEGORIES) as ItemCategory[]
 export interface FilterRule {
 	character?: ClassType[] | ClassType
 	item?: string[] | string
+	weaponFamily?: string
+	weaponStats?: WeaponStatRule[]
 	type?: ItemCategory
 	blessing?: string[] | string
 	perk?: string[] | string
@@ -239,9 +241,21 @@ export interface StatRule {
 	min: number
 }
 
+export interface WeaponStatRule {
+	id: string
+	min: number
+}
+
+export interface FormWeaponStatRule {
+	id: string
+	min: string
+}
+
 export interface FormFilterRule {
 	character: string
 	item: string
+	weaponFamily: string
+	weaponStats: FormWeaponStatRule[]
 	type: string
 	blessing: string
 	perk: string

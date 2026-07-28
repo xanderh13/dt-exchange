@@ -6,9 +6,9 @@ import type { FormFilterRule } from "../../../types"
 import "./Rules.css"
 import { defaultEmphasisColor, ITEM_OPTIONS, STORE_LABELS, STORE_OPTIONS } from "../../../types"
 import { RuleText } from "./RuleText"
-import { AddRuleButton } from "./Buttons/AddRuleButton"
 import { CloseButton } from "./Buttons/CloseButton"
 import { AddStatisticButton } from "./Buttons/AddStatisticButton"
+import { getWeaponFamily, WEAPON_FAMILY_IDS, WEAPON_FAMILY_LABELS } from "../../../weaponCatalog"
 
 type RulesProps = {
 	input: FormFilterRule
@@ -19,11 +19,17 @@ type RulesProps = {
 		statIndex: number,
 		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
 	) => void
+	onWeaponStatisticChange: (
+		index: number,
+		statIndex: number,
+		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+	) => void
 	onStatisticAdd: (index: number) => void
 	onStatisticRemove: (index: number, statIndex: number) => void
 }
 export function Rules(props: RulesProps) {
 	let [focusedRule, setFocusedRule] = useState<string>("")
+	const selectedFamily = getWeaponFamily(props.input.weaponFamily)
 
 	function handleFormFocus(event: FormEvent<HTMLInputElement | HTMLSelectElement>) {
 		const eventTarget: HTMLInputElement = event.target as HTMLInputElement
@@ -86,13 +92,43 @@ export function Rules(props: RulesProps) {
 					onFocus={(event) => handleFormFocus(event)}
 					onBlur={() => setFocusedRule("")}
 				/>
+				{props.input.type !== "curio" && (
+					<>
+						<Rule
+							label={"Weapon Family"}
+							type={"select"}
+							name={"weaponFamily"}
+							index={props.index}
+							value={props.input.weaponFamily}
+							focus={focusedRule}
+							dataValues={WEAPON_FAMILY_IDS}
+							labels={WEAPON_FAMILY_LABELS}
+							addAnyValue
+							onChange={(event) => props.onChange(props.index, event)}
+							onFocus={(event) => handleFormFocus(event)}
+							onBlur={() => setFocusedRule("")}
+						/>
+						{selectedFamily && (
+							<div className={"weapon-family-summary"}>
+								<RuleText size={"small"}>
+									Matches every mark: {selectedFamily.marks.map(({ name }) => name).join(", ")}
+								</RuleText>
+							</div>
+						)}
+					</>
+				)}
 				<Rule
-					label={"Items"}
+					label={props.input.type === "curio" ? "Items" : "Item Name Contains (optional)"}
 					type={"text"}
 					name={"item"}
 					index={props.index}
 					value={props.input.item}
 					focus={focusedRule}
+					placeholder={
+						props.input.type === "curio"
+							? undefined
+							: "Additional partial-name filter (usually leave blank)"
+					}
 					onChange={(event) => props.onChange(props.index, event)}
 					onFocus={(event) => handleFormFocus(event)}
 					onBlur={() => setFocusedRule("")}
@@ -133,44 +169,81 @@ export function Rules(props: RulesProps) {
 							onFocus={(event) => handleFormFocus(event)}
 							onBlur={() => setFocusedRule("")}
 						/>
-						<div className={"filter-rules-group-header"}>
-							<RuleText size={"medium"} padding={"5px 0 0 0"}>
-								Statistic Rules
-							</RuleText>
-						</div>
-						{props.input.stats?.map((statRule, index) => (
-							<div className={"statistics-wrapper"} key={index}>
-								<Rule
-									label={"Name"}
-									type={"text"}
-									name={`stats-${index}-name`}
-									index={props.index}
-									value={statRule.name}
-									focus={focusedRule}
-									onChange={(event) => props.onStatisticChange(props.index, index, event)}
-									onFocus={(event) => handleFormFocus(event)}
-									onBlur={() => setFocusedRule("")}
-								/>
-								<Rule
-									label={"Minimum Max Value"}
-									type={"number"}
-									min={0}
-									max={100}
-									name={`stats-${index}-min`}
-									index={props.index}
-									value={statRule.min}
-									focus={focusedRule}
-									onChange={(event) => props.onStatisticChange(props.index, index, event)}
-									onFocus={(event) => handleFormFocus(event)}
-									onBlur={() => setFocusedRule("")}
-								/>
-								<CloseButton
-									size={"medium"}
-									onClick={() => props.onStatisticRemove(props.index, index)}
-								/>
-							</div>
-						))}
-						<AddStatisticButton onClick={() => props.onStatisticAdd(props.index)} />
+						{selectedFamily ? (
+							<>
+								<div className={"filter-rules-group-header weapon-stat-header"}>
+									<RuleText size={"medium"} padding={"5px 0 0 0"}>
+										Maximum Modifier Requirements
+									</RuleText>
+									<RuleText size={"small"}>Blank values match any roll.</RuleText>
+								</div>
+								<div className={"weapon-statistics-wrapper"}>
+									{selectedFamily.stats.map((stat, statIndex) => (
+										<Rule
+											key={stat.id}
+											label={stat.names.join(" / ")}
+											type={"number"}
+											min={0}
+											max={80}
+											name={`weaponStats-${statIndex}-min`}
+											index={props.index}
+											value={props.input.weaponStats[statIndex]?.min ?? ""}
+											focus={focusedRule}
+											placeholder={"Any"}
+											onChange={(event) =>
+												props.onWeaponStatisticChange(props.index, statIndex, event)
+											}
+											onFocus={(event) => handleFormFocus(event)}
+											onBlur={() => setFocusedRule("")}
+										/>
+									))}
+								</div>
+							</>
+						) : (
+							<>
+								<div className={"filter-rules-group-header weapon-stat-header"}>
+									<RuleText size={"medium"} padding={"5px 0 0 0"}>
+										Statistic Rules
+									</RuleText>
+									<RuleText size={"small"}>
+										Select a weapon family above to populate its five modifiers.
+									</RuleText>
+								</div>
+								{props.input.stats?.map((statRule, index) => (
+									<div className={"statistics-wrapper"} key={index}>
+										<Rule
+											label={"Name"}
+											type={"text"}
+											name={`stats-${index}-name`}
+											index={props.index}
+											value={statRule.name}
+											focus={focusedRule}
+											onChange={(event) => props.onStatisticChange(props.index, index, event)}
+											onFocus={(event) => handleFormFocus(event)}
+											onBlur={() => setFocusedRule("")}
+										/>
+										<Rule
+											label={"Minimum Max Value"}
+											type={"number"}
+											min={0}
+											max={100}
+											name={`stats-${index}-min`}
+											index={props.index}
+											value={statRule.min}
+											focus={focusedRule}
+											onChange={(event) => props.onStatisticChange(props.index, index, event)}
+											onFocus={(event) => handleFormFocus(event)}
+											onBlur={() => setFocusedRule("")}
+										/>
+										<CloseButton
+											size={"medium"}
+											onClick={() => props.onStatisticRemove(props.index, index)}
+										/>
+									</div>
+								))}
+								<AddStatisticButton onClick={() => props.onStatisticAdd(props.index)} />
+							</>
+						)}
 						<div className={"filter-rules-group-header"}>
 							<RuleText size={"medium"} padding={"10px 0 0 0"}>
 								Minimums

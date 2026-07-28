@@ -5,6 +5,7 @@
 		"start": "npm run build -- --watch",
 		"build": "node ./bin/build.mjs",
 		"localisation:update": "node ./bin/update-localisation.mjs",
+		"weapon-catalog:update": "node ./bin/update-weapon-catalog.mjs",
 		"test": "vitest run",
 		"typecheck": "tsc",
 		"fmt": "oxfmt ."

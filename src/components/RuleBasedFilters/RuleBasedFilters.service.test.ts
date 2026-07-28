@@ -6,6 +6,8 @@ function formRule(overrides: Partial<FormFilterRule> = {}): FormFilterRule {
 	return {
 		character: "",
 		item: "",
+		weaponFamily: "",
+		weaponStats: [],
 		type: "",
 		blessing: "",
 		perk: "",
@@ -33,5 +35,45 @@ describe("dump stat rule conversion", () => {
 		const [form] = rulesToFormData([{ dumpStat: ["Mobility", "Defences"] }])
 
 		expect(form?.dumpStat).toBe("Mobility, Defences")
+	})
+})
+
+describe("weapon family rule conversion", () => {
+	test("stores only populated modifier requirements", () => {
+		const [rule] = formDataToRules([
+			formRule({
+				weaponFamily: "combatsword_p3",
+				weaponStats: [
+					{ id: "cleave-damage__defences", min: "70" },
+					{ id: "penetration", min: "" },
+					{ id: "finesse", min: "80" },
+					{ id: "damage", min: "0" },
+					{ id: "mobility", min: "" },
+				],
+			}),
+		])
+
+		expect(rule?.weaponFamily).toBe("combatsword_p3")
+		expect(rule?.weaponStats).toEqual([
+			{ id: "cleave-damage__defences", min: 70 },
+			{ id: "finesse", min: 80 },
+		])
+	})
+
+	test("restores all five family slots and leaves unspecified values blank", () => {
+		const [form] = rulesToFormData([
+			{
+				weaponFamily: "combatsword_p3",
+				weaponStats: [{ id: "cleave-damage__defences", min: 70 }],
+			},
+		])
+
+		expect(form?.weaponStats).toEqual([
+			{ id: "cleave-damage__defences", min: "70" },
+			{ id: "penetration", min: "" },
+			{ id: "finesse", min: "" },
+			{ id: "damage", min: "" },
+			{ id: "mobility", min: "" },
+		])
 	})
 })
