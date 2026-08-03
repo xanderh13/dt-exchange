@@ -1,0 +1,13 @@
+.armoury-exchange-panel {
+	box-sizing: border-box;
+	width: 100%;
+	min-width: 0;
+	padding: 48px;
+	background-color: #0b0b0b;
+}
+
+@media (max-width: 599.95px) {
+	.armoury-exchange-panel {
+		padding: 24px;
+	}
+}

@@ -2,10 +2,10 @@ import { createRoot, type Root } from "react-dom/client"
 import { App } from "./components/App"
 import { ExtensionErrorBoundary } from "./components/ExtensionErrorBoundary"
 import { log } from "./utils"
+import "./ExtensionPanel.css"
 
 const EXTENSION_ROOT_ATTRIBUTE = "data-armoury-exchange-root"
 const EXTENSION_MOUNT_ATTRIBUTE = "data-armoury-exchange-mount"
-const ACCOUNT_DETAILS_TITLE = "Account Details"
 const EXTENSION_TITLE = "Armoury Exchange"
 
 type MountedApp = {
@@ -28,37 +28,29 @@ function findExactText(text: string) {
 	) as HTMLElement | undefined
 }
 
-function getPanelContent(panel: HTMLElement) {
-	const firstChild = panel.firstElementChild as HTMLElement | null
-	const secondChild = firstChild?.firstElementChild as HTMLElement | null
-	return secondChild ?? firstChild ?? panel
-}
+function findDashboardSectionStack() {
+	const main = document.querySelector("main")
+	if (!main) return
 
-function findAccountDetailsPanel() {
-	const title = findExactText(ACCOUNT_DETAILS_TITLE)
-	if (!title) return
+	// Atoma's page shell renders its route inside a Material UI Container. The dashboard then uses
+	// an outer row Stack (sidebar + content) and an inner column Stack containing the page sections.
+	// Stable MUI component classes let us target that layout without depending on section names,
+	// generated style hashes, or the number/order of dashboard panels.
+	const pageContainer = Array.from(main.children).find((element) =>
+		element.classList.contains("MuiContainer-root"),
+	)
+	const dashboardRow = pageContainer
+		? Array.from(pageContainer.children).find((element) =>
+				element.classList.contains("MuiStack-root"),
+			)
+		: undefined
+	const sectionStack = dashboardRow
+		? Array.from(dashboardRow.children).find((element) =>
+				element.classList.contains("MuiStack-root"),
+			)
+		: undefined
 
-	// Prefer the current Atoma panel class, but select the panel semantically instead of by index.
-	const currentPanel = Array.from(
-		document.querySelectorAll<HTMLElement>(".MuiBox-root.css-10kv6m9"),
-	).find((panel) => panel.contains(title))
-	if (currentPanel) return currentPanel
-
-	// Material UI class hashes change. Fall back to the nearest box whose two-level content wrapper
-	// contains the Account Details heading; this mirrors the structure used by the original injector.
-	let ancestor = title.parentElement
-	while (ancestor) {
-		if (
-			ancestor.classList.contains("MuiBox-root") &&
-			getPanelContent(ancestor).contains(title) &&
-			ancestor.parentElement
-		) {
-			return ancestor
-		}
-		ancestor = ancestor.parentElement
-	}
-
-	return undefined
+	return sectionStack as HTMLElement | undefined
 }
 
 function isDashboardHome() {
@@ -80,30 +72,19 @@ function cleanUpMountedApp() {
 	mountedApp = undefined
 }
 
-function mountApp(accountDetailsPanel: HTMLElement) {
-	const parent = accountDetailsPanel.parentElement
-	if (!parent) return
-
-	const container = accountDetailsPanel.cloneNode(true) as HTMLElement
+function mountApp(sectionStack: HTMLElement) {
+	const container = document.createElement("section")
 	container.setAttribute(EXTENSION_ROOT_ATTRIBUTE, "")
+	container.className = "armoury-exchange-panel"
+	container.setAttribute("aria-label", EXTENSION_TITLE)
 
-	// Cloning host markup can duplicate IDs, which makes labels and selectors ambiguous.
-	for (const element of [
-		container,
-		...Array.from(container.querySelectorAll<HTMLElement>("[id]")),
-	]) {
-		element.removeAttribute("id")
-	}
-
-	const content = getPanelContent(container)
 	const mountPoint = document.createElement("div")
 	mountPoint.setAttribute(EXTENSION_MOUNT_ATTRIBUTE, "")
 	const ownershipMarker = document.createElement("div")
 	ownershipMarker.hidden = true
 	ownershipMarker.textContent = EXTENSION_TITLE
-	mountPoint.append(ownershipMarker)
-	content.replaceChildren(mountPoint)
-	parent.insertBefore(container, accountDetailsPanel)
+	container.append(ownershipMarker, mountPoint)
+	sectionStack.prepend(container)
 
 	try {
 		const root = createRoot(mountPoint)
@@ -145,8 +126,8 @@ function reconcileMount() {
 	// Preserve compatibility with the Web Store build, which predates the stable root marker.
 	if (findExactText(EXTENSION_TITLE)) return
 
-	const accountDetailsPanel = findAccountDetailsPanel()
-	if (accountDetailsPanel) mountApp(accountDetailsPanel)
+	const sectionStack = findDashboardSectionStack()
+	if (sectionStack) mountApp(sectionStack)
 }
 
 function scheduleReconcile() {
