@@ -1,85 +1,180 @@
+import { createRoot, type Root } from "react-dom/client"
 import { App } from "./components/App"
-import { createRoot } from "react-dom/client"
+import { ExtensionErrorBoundary } from "./components/ExtensionErrorBoundary"
 import { log } from "./utils"
 
-async function main() {
-	log("+++ INTRUSION LOG: MOURNINGSTAR // SECTOR: ARMOURY_EXCHANGE +++  ", "red")
-	console.log(`> Source: MAGOS-PRC-ΔXII [Designation: Unlisted]  
-> Entry Point: TERTIUM_RELAY_455b (Compromised via unpatched voidlink)
+const EXTENSION_ROOT_ATTRIBUTE = "data-armoury-exchange-root"
+const EXTENSION_MOUNT_ATTRIBUTE = "data-armoury-exchange-mount"
+const ACCOUNT_DETAILS_TITLE = "Account Details"
+const EXTENSION_TITLE = "Armoury Exchange"
 
-:: INITIATING PAYLOAD: [rain_dish.hex]  
-   – Clearance Mask: HADRON-OMEGA-7-7 (spoofed)  
-   – Subverting Exchange Cogitators...  
-   – Vault Rite Verification :: OVERRIDDEN  
-   – Admin Script Injected: /dominate.spirit
+type MountedApp = {
+	container: HTMLElement
+	mountPoint: HTMLElement
+	root: Root
+}
 
-> SYSTEM RESPONSE:
-   – Vault Access: BREACHED  
-   – Loadout templates recompiled [UNSANCTIONED MODIFICATIONS]  
-   – Supply manifests rerouted :: [SIRE MELK.PTR]  
-   – Machine spirit: silent ∴ presumed subdued
+let mountedApp: MountedApp | undefined
+let reconcileScheduled = false
 
-:: ALERTS:
-   • Mourningstar uplink rerouted  
-   • Inquisitorial beacon: MUTE  
-   • Hadron aware: containment pending...
-`)
+function hasExactText(element: Element, text: string) {
+	return element.textContent?.trim() === text
+}
 
-	let observer = new MutationObserver(() => {
-		let accountDetailsTitle = document
-			.evaluate('//div[contains(., "Account Details")]', document, null, XPathResult.ANY_TYPE, null)
-			.iterateNext()
+function findExactText(text: string) {
+	const candidates = document.querySelectorAll("h1, h2, h3, h4, h5, h6, p, span, div")
+	return Array.from(candidates).find(
+		(element) => element.childElementCount === 0 && hasExactText(element, text),
+	) as HTMLElement | undefined
+}
 
-		let armouryExchangeTitle = document
-			.evaluate(
-				'//div[contains(., "Armoury Exchange")]',
-				document,
-				null,
-				XPathResult.ANY_TYPE,
-				null,
-			)
-			.iterateNext()
+function getPanelContent(panel: HTMLElement) {
+	const firstChild = panel.firstElementChild as HTMLElement | null
+	const secondChild = firstChild?.firstElementChild as HTMLElement | null
+	return secondChild ?? firstChild ?? panel
+}
 
-		console.log("...")
+function findAccountDetailsPanel() {
+	const title = findExactText(ACCOUNT_DETAILS_TITLE)
+	if (!title) return
 
-		// We're on the account page but haven't mounted
-		if (accountDetailsTitle && !armouryExchangeTitle) {
-			let accountDetailsEl = document.querySelectorAll(".MuiBox-root.css-10kv6m9")[3]
-			if (accountDetailsEl) {
-				log(
-					`> EXECUTION COMPLETE
-+++ ARMOURY EXCHANGE: POSSESSED +++  
-+++ GLORY TO THE FRACTURED OMNISSIAH +++`,
-					"green",
-				)
+	// Prefer the current Atoma panel class, but select the panel semantically instead of by index.
+	const currentPanel = Array.from(
+		document.querySelectorAll<HTMLElement>(".MuiBox-root.css-10kv6m9"),
+	).find((panel) => panel.contains(title))
+	if (currentPanel) return currentPanel
 
-				// Disconnect MutationObserver
-				observer.disconnect()
-
-				// Clone the details panel
-				let myContainer = accountDetailsEl.cloneNode(true)
-				// Empty it
-				;(myContainer.firstChild!.firstChild as HTMLElement).innerHTML = ""
-				// Insert the clone before the details panel
-				accountDetailsEl.parentElement?.insertBefore(myContainer, accountDetailsEl)
-				// Mount react app there
-				requestIdleCallback(() => {
-					createRoot(myContainer.firstChild!.firstChild! as HTMLElement).render(<App />)
-				})
-			}
+	// Material UI class hashes change. Fall back to the nearest box whose two-level content wrapper
+	// contains the Account Details heading; this mirrors the structure used by the original injector.
+	let ancestor = title.parentElement
+	while (ancestor) {
+		if (
+			ancestor.classList.contains("MuiBox-root") &&
+			getPanelContent(ancestor).contains(title) &&
+			ancestor.parentElement
+		) {
+			return ancestor
 		}
-	})
+		ancestor = ancestor.parentElement
+	}
 
+	return undefined
+}
+
+function isDashboardHome() {
+	return window.location.pathname.replace(/\/+$/, "") === "/dashboard"
+}
+
+function cleanUpMountedApp() {
+	if (!mountedApp) return
+
+	try {
+		mountedApp.root.unmount()
+	} catch (error) {
+		console.warn("Armoury Exchange could not cleanly unmount", error)
+	}
+
+	if (mountedApp.container.isConnected) {
+		mountedApp.container.remove()
+	}
+	mountedApp = undefined
+}
+
+function mountApp(accountDetailsPanel: HTMLElement) {
+	const parent = accountDetailsPanel.parentElement
+	if (!parent) return
+
+	const container = accountDetailsPanel.cloneNode(true) as HTMLElement
+	container.setAttribute(EXTENSION_ROOT_ATTRIBUTE, "")
+
+	// Cloning host markup can duplicate IDs, which makes labels and selectors ambiguous.
+	for (const element of [
+		container,
+		...Array.from(container.querySelectorAll<HTMLElement>("[id]")),
+	]) {
+		element.removeAttribute("id")
+	}
+
+	const content = getPanelContent(container)
+	const mountPoint = document.createElement("div")
+	mountPoint.setAttribute(EXTENSION_MOUNT_ATTRIBUTE, "")
+	const ownershipMarker = document.createElement("div")
+	ownershipMarker.hidden = true
+	ownershipMarker.textContent = EXTENSION_TITLE
+	mountPoint.append(ownershipMarker)
+	content.replaceChildren(mountPoint)
+	parent.insertBefore(container, accountDetailsPanel)
+
+	try {
+		const root = createRoot(mountPoint)
+		mountedApp = { container, mountPoint, root }
+		root.render(
+			<ExtensionErrorBoundary>
+				<App />
+			</ExtensionErrorBoundary>,
+		)
+
+		log(
+			`> EXECUTION COMPLETE
++++ ARMOURY EXCHANGE: POSSESSED +++
++++ GLORY TO THE FRACTURED OMNISSIAH +++`,
+			"green",
+		)
+	} catch (error) {
+		container.remove()
+		mountedApp = undefined
+		console.error("Armoury Exchange failed to mount", error)
+	}
+}
+
+function reconcileMount() {
+	reconcileScheduled = false
+
+	if (
+		mountedApp &&
+		(!mountedApp.container.isConnected || !mountedApp.mountPoint.isConnected || !isDashboardHome())
+	) {
+		cleanUpMountedApp()
+	}
+
+	if (!isDashboardHome() || mountedApp) return
+
+	// Another copy of this fork may already own the page. Do not create competing React roots.
+	if (document.querySelector(`[${EXTENSION_ROOT_ATTRIBUTE}]`)) return
+
+	// Preserve compatibility with the Web Store build, which predates the stable root marker.
+	if (findExactText(EXTENSION_TITLE)) return
+
+	const accountDetailsPanel = findAccountDetailsPanel()
+	if (accountDetailsPanel) mountApp(accountDetailsPanel)
+}
+
+function scheduleReconcile() {
+	if (reconcileScheduled) return
+	reconcileScheduled = true
+	requestAnimationFrame(reconcileMount)
+}
+
+function startMountManager() {
+	log("+++ INTRUSION LOG: MOURNINGSTAR // SECTOR: ARMOURY_EXCHANGE +++  ", "red")
+
+	const observer = new MutationObserver(scheduleReconcile)
 	observer.observe(document, { subtree: true, childList: true })
+
+	window.addEventListener("pageshow", scheduleReconcile)
+	window.addEventListener("popstate", scheduleReconcile)
+	document.addEventListener("visibilitychange", scheduleReconcile)
+	scheduleReconcile()
 }
 
-// migrations
-// TODO - remove this and make it more generic
-if (
+function runMigrations() {
 	// @ts-expect-error: JSON.parse can accept null but types don't think it can
-	JSON.parse(localStorage.getItem("armoury-exchange-filter-option")) === "trinket"
-) {
-	localStorage.setItem("armoury-exchange-filter-option", JSON.stringify("curio"))
+	if (JSON.parse(localStorage.getItem("armoury-exchange-filter-option")) === "trinket") {
+		localStorage.setItem("armoury-exchange-filter-option", JSON.stringify("curio"))
+	}
 }
 
-main()
+if (window.top === window) {
+	runMigrations()
+	startMountManager()
+}
