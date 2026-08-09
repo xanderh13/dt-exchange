@@ -3,6 +3,19 @@ import localisation from "../../localisation"
 import traitTemplates from "../../trait_templates.json"
 import buffTemplates from "../../buff_templates.json"
 
+const warnedMissingTemplates = new Set<string>()
+
+function warnAboutMissingTemplate(kind: "blessing" | "perk", id: string, template?: string) {
+	const warningKey = `${kind}:${id}:${template ?? "unknown"}`
+	if (warnedMissingTemplates.has(warningKey)) return
+
+	warnedMissingTemplates.add(warningKey)
+	console.warn(`Armoury Exchange is missing a ${kind} template`, {
+		[`${kind}Id`]: id,
+		template,
+	})
+}
+
 // Linearly interpolate input between min and max. E.g. lerp(1, 2, 0.5) returns 1.5
 function lerp(min: number, max: number, input: number): number {
 	// Make sure input is a unit interval (0 <= n <= 1)
@@ -24,16 +37,37 @@ function lerpSteppedValue(range: number[], lerpValue: number): number {
 	return range[index - 1] ?? 0
 }
 
-export function getBlessingDescription(trait: Trait, _offer: Personal, items: Items): string {
-	let item = items![trait.id]
-	let traitTemplate = traitTemplates[item.trait]
-	let statBuffTemplate = buffTemplates[traitTemplate.name]
+export function getBlessingDescription(trait: Trait, offer: Personal, items: Items): string {
+	try {
+		return buildBlessingDescription(trait, offer, items)
+	} catch (error) {
+		console.warn("Armoury Exchange could not format a blessing description", {
+			traitId: trait.id,
+			error,
+		})
+		return localisation[trait.id].description
+	}
+}
+
+function buildBlessingDescription(trait: Trait, _offer: Personal, items: Items): string {
+	let desc = localisation[trait.id].description
+	const item = items?.[trait.id]
+	const traitTemplate = item?.trait
+		? (traitTemplates as Record<string, any>)[item.trait]
+		: undefined
+
+	// The live store and master list can be updated before the bundled game-data snapshot. Showing
+	// the localized fallback is preferable to taking down every offer (and the whole extension).
+	if (!traitTemplate) {
+		warnAboutMissingTemplate("blessing", trait.id, item?.trait)
+		return desc
+	}
+
+	let statBuffTemplate = (buffTemplates as Record<string, any>)[traitTemplate.name]
 	let statBuffs =
 		statBuffTemplate && (statBuffTemplate.stat_buffs || statBuffTemplate.lerped_stat_buffs)
 	let formatValues = traitTemplate.format_values
 	let buffs = traitTemplate.buffs
-
-	let desc = localisation[trait.id].description
 
 	if (formatValues) {
 		for (const [key, value] of Object.entries(formatValues)) {
@@ -50,7 +84,7 @@ export function getBlessingDescription(trait: Trait, _offer: Personal, items: It
 				} else {
 					buffValue = String(
 						getIn(
-							buffs[value.find_value.buff_template_name][trait.rarity - 1],
+							buffs?.[value.find_value.buff_template_name]?.[trait.rarity - 1],
 							value.find_value.path,
 						),
 					)
@@ -115,16 +149,35 @@ export function getBlessingDescription(trait: Trait, _offer: Personal, items: It
 }
 
 export function getPerkDescription(perk: Perk, items: Items): string {
-	let item = items![perk.id]
-	let traitTemplate = traitTemplates[item.trait]
+	try {
+		return buildPerkDescription(perk, items)
+	} catch (error) {
+		console.warn("Armoury Exchange could not format a perk description", {
+			perkId: perk.id,
+			error,
+		})
+		return localisation[perk.id].description
+	}
+}
+
+function buildPerkDescription(perk: Perk, items: Items): string {
+	let desc = localisation[perk.id].description
+	const item = items?.[perk.id]
+	const traitTemplate = item?.trait
+		? (traitTemplates as Record<string, any>)[item.trait]
+		: undefined
+
+	if (!traitTemplate) {
+		warnAboutMissingTemplate("perk", perk.id, item?.trait)
+		return desc
+	}
+
 	let formatValues = traitTemplate.format_values
 	let buffs = traitTemplate.buffs
 
-	let desc = localisation[perk.id].description
-
-	for (const [key, value] of Object.entries(formatValues)) {
+	for (const [key, value] of Object.entries(formatValues ?? {}) as [string, any][]) {
 		let buffValue = String(
-			getIn(buffs[value.find_value.buff_template_name][perk.rarity - 1], value.find_value.path),
+			getIn(buffs?.[value.find_value.buff_template_name]?.[perk.rarity - 1], value.find_value.path),
 		)
 
 		if (value.format_type === "percentage") {

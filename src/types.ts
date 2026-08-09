@@ -192,6 +192,7 @@ export interface Items {
 		icon: string
 		item_type: ItemType
 		slots: string[]
+		trait?: string
 	}
 }
 
@@ -204,9 +205,26 @@ interface PlayerItems {
 	version: string
 }
 
-export const CLASS_TYPES = ["veteran", "zealot", "psyker", "ogryn"] as const
+export const CLASS_TYPES = [
+	"veteran",
+	"zealot",
+	"psyker",
+	"ogryn",
+	"broker",
+	"adamant",
+	"cryptic",
+] as const
 export type ClassType = (typeof CLASS_TYPES)[number]
 export const CLASS_OPTIONS = Object.values(CLASS_TYPES) as ClassType[]
+export const CLASS_LABELS: Record<ClassType, string> = {
+	veteran: "Veteran",
+	zealot: "Zealot",
+	psyker: "Psyker",
+	ogryn: "Ogryn",
+	broker: "Hive Scum",
+	adamant: "Arbites",
+	cryptic: "Skitarii",
+}
 
 export const STORE_TYPES = ["credits", "marks"] as const
 export type StoreType = (typeof STORE_TYPES)[number]

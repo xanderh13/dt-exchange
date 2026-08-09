@@ -148,14 +148,6 @@ function startMountManager() {
 	scheduleReconcile()
 }
 
-function runMigrations() {
-	// @ts-expect-error: JSON.parse can accept null but types don't think it can
-	if (JSON.parse(localStorage.getItem("armoury-exchange-filter-option")) === "trinket") {
-		localStorage.setItem("armoury-exchange-filter-option", JSON.stringify("curio"))
-	}
-}
-
 if (window.top === window) {
-	runMigrations()
 	startMountManager()
 }

@@ -74,7 +74,7 @@ export function compareStoreOffers(
 		}
 	}
 
-	return sortOptions[sortOption](a, b)
+	return (sortOptions[sortOption] ?? sortOptions.modifiersRating)(a, b)
 }
 
 let filterOptions = {
@@ -345,7 +345,7 @@ export function Store({
 				<Countdown key={store.currentRotationEnd} until={parseInt(store.currentRotationEnd, 10)} />
 			</Text>
 			{store.personal
-				.filter(filterOptions[filterOption](items))
+				.filter((filterOptions[filterOption] ?? filterOptions.none)(items))
 				.sort((a, b) => compareStoreOffers(a, b, sortOption, matchesFirst))
 				.map((offer) => {
 					return (

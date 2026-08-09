@@ -9,30 +9,53 @@ import { useAccount } from "../hooks/useAccount"
 import type { SortOption } from "./Store"
 import type { StoreType, FilterRule } from "../types"
 import "./Layout.css"
-import { STORE_OPTIONS, STORE_LABELS } from "../types"
+import { CLASS_LABELS, STORE_OPTIONS, STORE_LABELS } from "../types"
 import { RuleBasedFilters } from "./RuleBasedFilters/RuleBasedFilters"
 import { useLocalStorage } from "../hooks/useLocalStorage"
 import { SplitRuleWrapper } from "./RuleBasedFilters/components/SplitRuleWrapper"
 import { Rule } from "./RuleBasedFilters/components/Rule"
-import { DeemphasizeOption } from "./Item/Item"
+import { deemphasizeClass, DeemphasizeOption } from "./Item/Item"
+
+const isString = (value: unknown): value is string => typeof value === "string"
+const isBoolean = (value: unknown): value is boolean => typeof value === "boolean"
+const isFilterRules = (value: unknown): value is FilterRule[] => Array.isArray(value)
+const isOption = <T extends string>(options: readonly T[]) =>
+	function (value: unknown): value is T {
+		return typeof value === "string" && options.includes(value as T)
+	}
 
 export function Layout() {
 	let account = useAccount()
-	let [activeChar, setActiveChar] = useLocalStorage<string>("active-char", "")
-	let [sortOption, setSortOption] = useLocalStorage<SortOption>("sort-option", SORT_OPTIONS[0]!)
-	let [rbfOption, setRBFOption] = useLocalStorage<FilterRule[]>("filter-rules", [{ minStats: 360 }])
+	let [activeChar, setActiveChar] = useLocalStorage<string>("active-char", "", isString)
+	let [sortOption, setSortOption] = useLocalStorage<SortOption>(
+		"sort-option",
+		SORT_OPTIONS[0]!,
+		isOption(SORT_OPTIONS),
+	)
+	let [rbfOption, setRBFOption] = useLocalStorage<FilterRule[]>(
+		"filter-rules",
+		[{ minStats: 360 }],
+		isFilterRules,
+	)
 	let [filterOption, setFilterOption] = useLocalStorage<FilterOption>(
 		"filter-option",
 		FILTER_OPTIONS[0]!,
+		isOption(FILTER_OPTIONS),
 	)
-	let [storeType, setStoreType] = useLocalStorage<StoreType>("store-type", "credits")
+	let [storeType, setStoreType] = useLocalStorage<StoreType>(
+		"store-type",
+		"credits",
+		isOption(STORE_OPTIONS),
+	)
 	let [enableRuleBasedFiltering, setEnableRuleBasedFiltering] = useLocalStorage(
 		"enable-rule-based-filter",
 		false,
+		isBoolean,
 	)
 	let [deemphasizeOption, setDeemphasizeOption] = useLocalStorage<DeemphasizeOption>(
 		"deemphasize-selection",
 		"none",
+		isOption(Object.keys(deemphasizeClass) as DeemphasizeOption[]),
 	)
 
 	let [focusedInput, setFocusedInput] = useState<string>("")
@@ -77,6 +100,7 @@ export function Layout() {
 			<Title>Armoury Exchange</Title>
 			<ul className="char-list">
 				{account.characters.map((character) => {
+					const characterIcon = archetype[character.archetype as keyof typeof archetype]
 					return (
 						<li key={character.id}>
 							<Button
@@ -84,7 +108,9 @@ export function Layout() {
 								onClick={() => {
 									setActiveChar(character.id)
 								}}
-								icon={<img src={archetype[character.archetype]} className="class-icon" />}
+								icon={
+									characterIcon ? <img src={characterIcon} className="class-icon" /> : undefined
+								}
 							>
 								<div
 									style={{
@@ -101,7 +127,7 @@ export function Layout() {
 											textTransform: "capitalize",
 										}}
 									>
-										{character.archetype} {character.level}
+										{CLASS_LABELS[character.archetype] ?? character.archetype} {character.level}
 									</div>
 								</div>
 							</Button>

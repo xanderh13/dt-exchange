@@ -4,7 +4,13 @@ import { Rule } from "./Rule"
 import { SplitRuleWrapper } from "./SplitRuleWrapper"
 import type { FormFilterRule } from "../../../types"
 import "./Rules.css"
-import { defaultEmphasisColor, ITEM_OPTIONS, STORE_LABELS, STORE_OPTIONS } from "../../../types"
+import {
+	CLASS_TYPES,
+	defaultEmphasisColor,
+	ITEM_OPTIONS,
+	STORE_LABELS,
+	STORE_OPTIONS,
+} from "../../../types"
 import { RuleText } from "./RuleText"
 import { CloseButton } from "./Buttons/CloseButton"
 import { AddStatisticButton } from "./Buttons/AddStatisticButton"
@@ -96,7 +102,7 @@ export function Rules(props: RulesProps) {
 					index={props.index}
 					value={props.input.character}
 					focus={focusedRule}
-					placeholder={"veteran, zealot, psyker, ogryn"}
+					placeholder={CLASS_TYPES.join(", ")}
 					onChange={(event) => props.onChange(props.index, event)}
 					onFocus={(event) => handleFormFocus(event)}
 					onBlur={() => setFocusedRule("")}
