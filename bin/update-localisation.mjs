@@ -5,6 +5,16 @@ import { fileURLToPath } from "node:url"
 const weaponsUrl = "https://darktide.gameslantern.com/api/weapons?page=1"
 
 const newWeapons = {
+	"Accatran Mk III Huntsman's Shotgun": {
+		id: "content/items/weapons/player/ranged/shotgun_p3_m1",
+		stats: {
+			shotgun_p3_m1_ammo_stat: "Ammo",
+			shotgun_p3_m1_power_stat: "Stopping Power",
+			shotgun_p3_m1_stability_stat: "Stability",
+			shotgun_p3_m1_dps_stat: "Damage",
+			shotgun_p3_m1_mobility_stat: "Mobility",
+		},
+	},
 	"Branx Mk CV Galvanic Rifle": {
 		id: "content/items/weapons/player/ranged/galvanic_rifle_p1_m1",
 		stats: {
@@ -64,6 +74,56 @@ const newWeapons = {
 			phosphor_pistol_p1_m1_mobility_stat: "Mobility",
 			phosphor_pistol_p1_m1_armor_piercing_stat: "Penetration",
 			phosphor_pistol_p1_m1_crit_stat: "Critical Bonus",
+		},
+	},
+	"Gromm Mk I & Mk V Battle Maul & Slab Shield": {
+		id: "content/items/weapons/player/melee/ogryn_powermaul_slabshield_p1_m2",
+		stats: {
+			ogryn_powermaul_slabshield_cleave_damage_stat: "Cleave Damage",
+			ogryn_powermaul_slabshield_armor_pierce_stat: "Penetration",
+			ogryn_powermaul_slabshield_control_stat: "Crowd Control",
+			ogryn_powermaul_slabshield_defence_stat: "Defences",
+			ogryn_powermaul_slabshield_dps_stat: "Damage",
+		},
+	},
+	"Krourk Mk IIa Cruncher": {
+		id: "content/items/weapons/player/melee/ogryn_hammer_2h_p1_m1",
+		stats: {
+			ogryn_hammer_2h_p1_m1_armor_pierce_stat: "Penetration",
+			ogryn_hammer_2h_p1_m1_first_target_stat: "First Target",
+			ogryn_hammer_2h_p1_m1_control_stat: "Crowd Control",
+			ogryn_hammer_2h_p1_m1_defence_stat: "Defences",
+			ogryn_hammer_2h_p1_m1_dps_stat: "Damage",
+		},
+	},
+	"Krourk Mk IV Double-Barrelled Shotgun": {
+		id: "content/items/weapons/player/ranged/shotgun_p2_m3",
+		stats: {
+			shotgun_p2_m3_power_stat: "Stopping Power",
+			shotgun_p2_m3_reload_speed_stat: "Reload Speed",
+			shotgun_p2_m3_range_stat: "Range",
+			shotgun_p2_m3_dps_stat: "Damage",
+			shotgun_p2_m3_mobility_stat: "Mobility",
+		},
+	},
+	"Krourk Mk VII Crusher": {
+		id: "content/items/weapons/player/melee/powermaul_2h_p1_m2",
+		stats: {
+			ogryn_powermaul_power_output_stat: "Power Output",
+			powermaul_2h_armor_pierce_stat: "Penetration",
+			powermaul_2h_control_stat: "Crowd Control",
+			powermaul_2h_defence_stat: "Defences",
+			powermaul_2h_dps_stat: "Damage",
+		},
+	},
+	"Lorenz Mk VII Thugshot": {
+		id: "content/items/weapons/player/ranged/ogryn_thumper_p1_m3",
+		stats: {
+			ogryn_thumper_p1_m3_power_stat: "Stopping Power",
+			ogryn_thumper_p1_m3_reload_speed_stat: "Reload Speed",
+			ogryn_thumper_p1_m3_range_stat: "Range",
+			ogryn_thumper_p1_m3_dps_stat: "Damage",
+			ogryn_thumper_p1_m3_mobility_stat: "Mobility",
 		},
 	},
 	"M35 Magnacore Mk III Plasma Gun": {

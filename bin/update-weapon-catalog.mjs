@@ -9,6 +9,13 @@ const requestHeaders = {
 	"X-Requested-With": "XMLHttpRequest",
 }
 
+const newTraitSuffixes = {
+	"Deadly Frequencies": ["increased_power_on_weapon_special_follow_up_hits"],
+	"Enhanced Voltaic Arcs": ["enhanced_arc_jumps_angle"],
+	"Machine Spirit Resurgent": ["refund_charge_on_weapon_special_weakspot_kill"],
+	"Voltagheist Overload": ["arc_has_killing_blow_chance"],
+}
+
 const normalise = (value = "") =>
 	value
 		.normalize("NFKD")
@@ -148,8 +155,12 @@ if (!Array.isArray(weaponResponse.data) || weaponResponse.data.length === 0) {
 }
 
 const weaponByApiId = new Map(weaponResponse.data.map((weapon) => [weapon.id, weapon]))
+const weaponTraitByApiId = new Map(
+	buildEditor.weapon_traits.map((trait) => [trait.id, trait]),
+)
 const itemIdsByName = new Map()
 const localisedNames = new Map()
+const traitSuffixesByName = new Map()
 
 for (const [id, value] of Object.entries(localisation)) {
 	if (!value.display_name) continue
@@ -157,8 +168,16 @@ for (const [id, value] of Object.entries(localisation)) {
 	if (id.startsWith("content/items/weapons/player/")) {
 		addToMap(itemIdsByName, normalise(value.display_name), id)
 	}
+	if (id.startsWith("content/items/traits/")) {
+		addUniqueToMap(
+			traitSuffixesByName,
+			normalise(value.display_name),
+			id.split("/").at(-1),
+		)
+	}
 }
 
+const unmappedBlessingNames = new Set()
 const families = buildEditor.weapon_types.map((family) => {
 	const marks = family.weapons.map((mark) => {
 		const apiWeapon = weaponByApiId.get(mark.id)
@@ -179,8 +198,24 @@ const families = buildEditor.weapon_types.map((family) => {
 				`${family.name}: ${mark.name}: ${bar.name}`,
 			),
 		)
+		const blessings = mark.usable_traits.map((traitId) => {
+			const trait = weaponTraitByApiId.get(traitId)
+			if (!trait) {
+				throw new Error(`${family.name}: ${mark.name}: missing blessing ${traitId}`)
+			}
 
-		return { itemId, name, statNames }
+			const traitSuffixes =
+				traitSuffixesByName.get(normalise(trait.name)) ?? newTraitSuffixes[trait.name] ?? []
+			if (traitSuffixes.length === 0) unmappedBlessingNames.add(trait.name)
+
+			return {
+				name: trait.name,
+				effect: trait.effect,
+				traitSuffixes,
+			}
+		})
+
+		return { itemId, name, statNames, blessings }
 	})
 
 	const familyIds = [
@@ -254,3 +289,8 @@ console.log(
 		0,
 	)} marks); ${aliasedFamilies.length} families use cross-mark stat aliases.`,
 )
+if (unmappedBlessingNames.size > 0) {
+	console.warn(
+		`Blessings without known Atoma trait suffixes: ${[...unmappedBlessingNames].sort().join(", ")}`,
+	)
+}

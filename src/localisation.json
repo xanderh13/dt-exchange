@@ -3896,5 +3896,49 @@
 	"phosphor_pistol_p1_m1_crit_stat": { "display_name": "Critical Bonus" },
 	"plasmagun_p1_m2_dps_stat": { "display_name": "Damage" },
 	"plasmagun_p1_m2_power_stat": { "display_name": "Stopping Power" },
-	"plasmagun_p1_m2_ammo_stat": { "display_name": "Ammo" }
+	"plasmagun_p1_m2_ammo_stat": { "display_name": "Ammo" },
+	"content\/items\/weapons\/player\/ranged\/shotgun_p3_m1": {
+		"description": "A precursor of the famous Accatran Mk IX used by the Astra Militarum, this versatile shotgun is especially favoured by Atoma's enforcers.",
+		"display_name": "Accatran Mk III Huntsman's Shotgun"
+	},
+	"content\/items\/weapons\/player\/melee\/ogryn_powermaul_slabshield_p1_m2": {
+		"description": "Nothing like having an ogryn with a slabshield on your team. Walking cover's nothing to be sniffed at.",
+		"display_name": "Gromm Mk I & Mk V Battle Maul & Slab Shield"
+	},
+	"content\/items\/weapons\/player\/melee\/ogryn_hammer_2h_p1_m1": {
+		"description": "This weighty hammer requires an ogryn's strength to wield it, but is a fearsome weapon in the right hands. As long as they're very big hands.",
+		"display_name": "Krourk Mk IIa Cruncher"
+	},
+	"content\/items\/weapons\/player\/ranged\/shotgun_p2_m3": {
+		"description": "A valuable weapon to have when fighting in close quarters. A trusty Krourk two-shot has saved many a patrolman in a tight situation.",
+		"display_name": "Krourk Mk IV Double-Barrelled Shotgun"
+	},
+	"content\/items\/weapons\/player\/melee\/powermaul_2h_p1_m2": {
+		"description": "The most reckless Militarum troopers are sometimes issued with massive, two-handed mauls called \"crushers\", which lend themselves to devastating assaults.",
+		"display_name": "Krourk Mk VII Crusher"
+	},
+	"content\/items\/weapons\/player\/ranged\/ogryn_thumper_p1_m3": {
+		"description": "Inspired by the man-portable boarding defence cannons used by Imperial merchant vessels, this heavy, solid-shot breach-loader is simple, devastating, and Ogryn-proof.",
+		"display_name": "Lorenz Mk VII Thugshot"
+	},
+	"shotgun_p3_m1_ammo_stat": { "display_name": "Ammo" },
+	"shotgun_p3_m1_power_stat": { "display_name": "Stopping Power" },
+	"shotgun_p3_m1_stability_stat": { "display_name": "Stability" },
+	"shotgun_p3_m1_dps_stat": { "display_name": "Damage" },
+	"shotgun_p3_m1_mobility_stat": { "display_name": "Mobility" },
+	"ogryn_hammer_2h_p1_m1_armor_pierce_stat": { "display_name": "Penetration" },
+	"ogryn_hammer_2h_p1_m1_first_target_stat": { "display_name": "First Target" },
+	"ogryn_hammer_2h_p1_m1_control_stat": { "display_name": "Crowd Control" },
+	"ogryn_hammer_2h_p1_m1_defence_stat": { "display_name": "Defences" },
+	"ogryn_hammer_2h_p1_m1_dps_stat": { "display_name": "Damage" },
+	"shotgun_p2_m3_power_stat": { "display_name": "Stopping Power" },
+	"shotgun_p2_m3_reload_speed_stat": { "display_name": "Reload Speed" },
+	"shotgun_p2_m3_range_stat": { "display_name": "Range" },
+	"shotgun_p2_m3_dps_stat": { "display_name": "Damage" },
+	"shotgun_p2_m3_mobility_stat": { "display_name": "Mobility" },
+	"ogryn_thumper_p1_m3_power_stat": { "display_name": "Stopping Power" },
+	"ogryn_thumper_p1_m3_reload_speed_stat": { "display_name": "Reload Speed" },
+	"ogryn_thumper_p1_m3_range_stat": { "display_name": "Range" },
+	"ogryn_thumper_p1_m3_dps_stat": { "display_name": "Damage" },
+	"ogryn_thumper_p1_m3_mobility_stat": { "display_name": "Mobility" }
 }

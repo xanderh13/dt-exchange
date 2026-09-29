@@ -2,6 +2,21 @@ import type { Items, Perk, Personal, Trait } from "../../types"
 import localisation from "../../localisation"
 import traitTemplates from "../../trait_templates.json"
 import buffTemplates from "../../buff_templates.json"
+import { getWeaponBlessing } from "../../weaponCatalog"
+
+const traitTemplatesByName = traitTemplates as Record<string, any>
+const buffTemplatesByName = buffTemplates as Record<string, any>
+
+function fallbackDescription(description: string): string {
+	return description.replaceAll(/\{[^{}]+:%s\}/g, "?")
+}
+
+function warnAboutMissingTemplate(kind: "blessing" | "perk", id: string, template?: string) {
+	console.warn(`Unable to calculate ${kind} values from bundled game data`, {
+		id,
+		template: template ?? "<missing item metadata>",
+	})
+}
 
 // Linearly interpolate input between min and max. E.g. lerp(1, 2, 0.5) returns 1.5
 function lerp(min: number, max: number, input: number): number {
@@ -24,50 +39,57 @@ function lerpSteppedValue(range: number[], lerpValue: number): number {
 	return range[index - 1] ?? 0
 }
 
-export function getBlessingDescription(trait: Trait, _offer: Personal, items: Items): string {
-	let item = items![trait.id]
-	let traitTemplate = traitTemplates[item.trait]
-	let statBuffTemplate = buffTemplates[traitTemplate.name]
+export function getBlessingDescription(trait: Trait, offer: Personal, items: Items): string {
+	const currentBlessing = getWeaponBlessing(offer.description.id, trait.id)
+	let desc = localisation[trait.id].description
+	let item = items?.[trait.id] as (Items[string] & { trait?: string }) | undefined
+	let traitTemplate = item?.trait ? traitTemplatesByName[item.trait] : undefined
+	if (!traitTemplate) {
+		if (currentBlessing) return currentBlessing.effect
+		warnAboutMissingTemplate("blessing", trait.id, item?.trait)
+		return fallbackDescription(desc)
+	}
+
+	let statBuffTemplate = buffTemplatesByName[traitTemplate.name]
 	let statBuffs =
 		statBuffTemplate && (statBuffTemplate.stat_buffs || statBuffTemplate.lerped_stat_buffs)
 	let formatValues = traitTemplate.format_values
 	let buffs = traitTemplate.buffs
 
-	let desc = localisation[trait.id].description
-
 	if (formatValues) {
 		for (const [key, value] of Object.entries(formatValues)) {
-			let find_value = value.find_value
+			const formatValue = value as any
+			let find_value = formatValue.find_value
 			let buffValue = ""
 			if (find_value) {
 				if (find_value.find_value_type === "buff_template") {
-					let buffTemplate = buffTemplates[find_value.buff_template_name]
+					let buffTemplate = buffTemplatesByName[find_value.buff_template_name]
 					let value = getIn(buffTemplate, find_value.path)
 					desc = desc.replaceAll(`{${key}:%s}`, value?.toString() ?? "")
 				} else if (find_value.find_value_type === "rarity_value") {
-					let val = value.find_value.trait_value[trait.rarity - 1]
+					let val = formatValue.find_value.trait_value[trait.rarity - 1]
 					desc = desc.replaceAll(`{${key}:%s}`, val?.toString() ?? "")
 				} else {
 					buffValue = String(
 						getIn(
-							buffs[value.find_value.buff_template_name][trait.rarity - 1],
-							value.find_value.path,
-						),
+							buffs?.[formatValue.find_value.buff_template_name]?.[trait.rarity - 1],
+							formatValue.find_value.path,
+						) ?? "",
 					)
 				}
 
-				if (value.format_type === "percentage") {
+				if (formatValue.format_type === "percentage") {
 					buffValue = (parseFloat(buffValue) * 100).toFixed(0) + "%"
 				}
 
-				if (value.prefix) {
-					buffValue = value.prefix + buffValue
+				if (formatValue.prefix) {
+					buffValue = formatValue.prefix + buffValue
 				}
 
 				desc = desc.replaceAll(`{${key}:%s}`, buffValue?.toString() ?? "")
 			} else {
-				if (value.format_type === "string") {
-					desc = desc.replaceAll(`{${key}:%s}`, value.value ?? "")
+				if (formatValue.format_type === "string") {
+					desc = desc.replaceAll(`{${key}:%s}`, formatValue.value ?? "")
 				}
 			}
 		}
@@ -115,24 +137,32 @@ export function getBlessingDescription(trait: Trait, _offer: Personal, items: It
 }
 
 export function getPerkDescription(perk: Perk, items: Items): string {
-	let item = items![perk.id]
-	let traitTemplate = traitTemplates[item.trait]
+	let desc = localisation[perk.id].description
+	let item = items?.[perk.id] as (Items[string] & { trait?: string }) | undefined
+	let traitTemplate = item?.trait ? traitTemplatesByName[item.trait] : undefined
+	if (!traitTemplate) {
+		warnAboutMissingTemplate("perk", perk.id, item?.trait)
+		return fallbackDescription(desc)
+	}
+
 	let formatValues = traitTemplate.format_values
 	let buffs = traitTemplate.buffs
 
-	let desc = localisation[perk.id].description
-
 	for (const [key, value] of Object.entries(formatValues)) {
+		const formatValue = value as any
 		let buffValue = String(
-			getIn(buffs[value.find_value.buff_template_name][perk.rarity - 1], value.find_value.path),
+			getIn(
+				buffs?.[formatValue.find_value.buff_template_name]?.[perk.rarity - 1],
+				formatValue.find_value.path,
+			) ?? "",
 		)
 
-		if (value.format_type === "percentage") {
+		if (formatValue.format_type === "percentage") {
 			buffValue = (parseFloat(buffValue) * 100).toFixed(0) + "%"
 		}
 
-		if (value.prefix) {
-			buffValue = value.prefix + buffValue
+		if (formatValue.prefix) {
+			buffValue = formatValue.prefix + buffValue
 		}
 
 		desc = desc.replaceAll(`{${key}:%s}`, buffValue?.toString() ?? "")

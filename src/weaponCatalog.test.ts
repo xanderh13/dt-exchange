@@ -3,6 +3,7 @@ import type { BaseStat } from "./types"
 import {
 	getWeaponFamily,
 	getWeaponFamilyForItem,
+	getWeaponBlessing,
 	matchesWeaponFamilyStats,
 	WEAPON_FAMILIES,
 	WEAPON_FAMILY_IDS,
@@ -27,8 +28,23 @@ describe("weapon catalog", () => {
 				for (const slot of family.stats) {
 					expect(mark.statNames.filter((name) => slot.names.includes(name))).toHaveLength(1)
 				}
+
+				const blessingSuffixes = mark.blessings.flatMap(({ traitSuffixes }) => traitSuffixes)
+				expect(new Set(blessingSuffixes).size).toBe(blessingSuffixes.length)
 			}
 		}
+	})
+
+	test("maps new-family Atoma trait IDs to current Games Lantern blessings", () => {
+		expect(
+			getWeaponBlessing(
+				"content/items/weapons/player/ranged/shotgun_p3_m1",
+				"content/items/traits/bespoke_shotgun_p3/bleed_on_crit",
+			),
+		).toMatchObject({
+			name: "Flechette",
+			effect: "6 Bleed Stacks on Critical Hit.",
+		})
 	})
 
 	test("combines the Duelling Sword swapped modifier into one localized slot", () => {

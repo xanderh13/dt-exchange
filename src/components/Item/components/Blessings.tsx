@@ -4,6 +4,7 @@ import type { Items, Personal } from "../../../types"
 import { Text } from "../../Text"
 import { raritySymbol, traitRarityToRating } from "../consts"
 import { getBlessingDescription } from "../utils"
+import { getWeaponBlessing } from "../../../weaponCatalog"
 import "./Blessings.css"
 
 type Props = {
@@ -47,7 +48,9 @@ export function Blessings({ offer, items }: Props) {
 
 			<div>
 				{offer.description.overrides.traits.map((trait) => {
-					const displayName: string = localisation[trait.id].display_name
+					const currentBlessing = getWeaponBlessing(offer.description.id, trait.id)
+					const displayName: string =
+						currentBlessing?.name ?? localisation[trait.id].display_name
 					const description: string = getBlessingDescription(trait, offer, items)
 					return (
 						<div className="blessing" key={trait.id + trait.rarity}>

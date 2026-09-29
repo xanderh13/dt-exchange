@@ -10,6 +10,13 @@ export interface WeaponCatalogMark {
 	itemId: string
 	name: string
 	statNames: string[]
+	blessings: WeaponCatalogBlessing[]
+}
+
+export interface WeaponCatalogBlessing {
+	name: string
+	effect: string
+	traitSuffixes: string[]
 }
 
 export interface WeaponFamily {
@@ -39,6 +46,9 @@ const familiesById = new Map(WEAPON_FAMILIES.map((family) => [family.id, family]
 const familiesByItemId = new Map(
 	WEAPON_FAMILIES.flatMap((family) => family.itemIds.map((itemId) => [itemId, family] as const)),
 )
+const marksByItemId = new Map(
+	WEAPON_FAMILIES.flatMap((family) => family.marks.map((mark) => [mark.itemId, mark] as const)),
+)
 
 export function getWeaponFamily(id: string | undefined) {
 	return id ? familiesById.get(id) : undefined
@@ -46,6 +56,14 @@ export function getWeaponFamily(id: string | undefined) {
 
 export function getWeaponFamilyForItem(itemId: string) {
 	return familiesByItemId.get(itemId)
+}
+
+export function getWeaponBlessing(itemId: string, traitId: string) {
+	const traitSuffix = traitId.split("/").at(-1)
+	if (!traitSuffix) return undefined
+	return marksByItemId
+		.get(itemId)
+		?.blessings.find(({ traitSuffixes }) => traitSuffixes.includes(traitSuffix))
 }
 
 export function getWeaponStatLabel(familyId: string, statId: string) {
