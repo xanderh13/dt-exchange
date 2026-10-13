@@ -29,6 +29,32 @@ function getIn(obj: any, path: string[]): any {
 	return path.reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj)
 }
 
+// These game stats store the remaining cost/damage, rather than the reduction.
+function formatTraitValue(value: any, format: any): string {
+	let number = Number(value)
+	const stat = format.find_value?.path?.at(-1) ?? ""
+	if (format.format_type === "percentage") {
+		if (
+			[
+				"corruption_taken_multiplier",
+				"corruption_taken_grimoire_multiplier",
+				"block_cost_multiplier",
+				"sprinting_cost_multiplier",
+				"fov_multiplier",
+				"charge_movement_reduction_multiplier",
+				"overheat_over_time_amount",
+			].includes(stat) ||
+			(stat.startsWith("damage_taken_by_") && stat.endsWith("_multiplier"))
+		) {
+			number = 1 - number
+		} else if (stat === "overheat_dissipation_multiplier") {
+			number -= 1
+		}
+		return (format.prefix ?? "") + (number * 100).toFixed(0) + "%"
+	}
+	return (format.prefix ?? "") + String(value ?? "")
+}
+
 function lerpSteppedValue(range: number[], lerpValue: number): number {
 	const min = 1
 	const max = range.length
@@ -65,10 +91,10 @@ export function getBlessingDescription(trait: Trait, offer: Personal, items: Ite
 				if (find_value.find_value_type === "buff_template") {
 					let buffTemplate = buffTemplatesByName[find_value.buff_template_name]
 					let value = getIn(buffTemplate, find_value.path)
-					desc = desc.replaceAll(`{${key}:%s}`, value?.toString() ?? "")
+					buffValue = value
 				} else if (find_value.find_value_type === "rarity_value") {
 					let val = formatValue.find_value.trait_value[trait.rarity - 1]
-					desc = desc.replaceAll(`{${key}:%s}`, val?.toString() ?? "")
+					buffValue = val
 				} else {
 					buffValue = String(
 						getIn(
@@ -78,19 +104,11 @@ export function getBlessingDescription(trait: Trait, offer: Personal, items: Ite
 					)
 				}
 
-				if (formatValue.format_type === "percentage") {
-					buffValue = (parseFloat(buffValue) * 100).toFixed(0) + "%"
-				}
-
-				if (formatValue.prefix) {
-					buffValue = formatValue.prefix + buffValue
-				}
+				buffValue = formatTraitValue(buffValue, formatValue)
 
 				desc = desc.replaceAll(`{${key}:%s}`, buffValue?.toString() ?? "")
 			} else {
-				if (formatValue.format_type === "string") {
-					desc = desc.replaceAll(`{${key}:%s}`, formatValue.value ?? "")
-				}
+				desc = desc.replaceAll(`{${key}:%s}`, formatTraitValue(formatValue.value, formatValue))
 			}
 		}
 	}
@@ -157,13 +175,7 @@ export function getPerkDescription(perk: Perk, items: Items): string {
 			) ?? "",
 		)
 
-		if (formatValue.format_type === "percentage") {
-			buffValue = (parseFloat(buffValue) * 100).toFixed(0) + "%"
-		}
-
-		if (formatValue.prefix) {
-			buffValue = formatValue.prefix + buffValue
-		}
+		buffValue = formatTraitValue(buffValue, formatValue)
 
 		desc = desc.replaceAll(`{${key}:%s}`, buffValue?.toString() ?? "")
 	}
