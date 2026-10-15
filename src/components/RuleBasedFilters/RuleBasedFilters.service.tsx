@@ -23,6 +23,8 @@ export function formDataToRules(rulesFormData: FormFilterRule[]): FilterRule[] {
 				: undefined
 		return {
 			minStats: parseFloat(formRule.minStats) || undefined,
+			rarities:
+				formRule.type !== "curio" && formRule.rarities?.length ? [...formRule.rarities] : undefined,
 			minRating: parseFloat(formRule.minRating) || undefined,
 			minBlessingRarity: parseFloat(formRule.minBlessingRarity) || undefined,
 			minPerkRarity: parseFloat(formRule.minPerkRarity) || undefined,
@@ -51,6 +53,7 @@ export function rulesToFormData(rulesData: FilterRule[]): FormFilterRule[] {
 		const weaponFamily = getWeaponFamily(rule.weaponFamily)
 		return {
 			isOpen: false,
+			rarities: rule.type === "curio" ? [] : [...(rule.rarities ?? [])],
 			minStats: rule.minStats?.toString() || "0",
 			minRating: rule.minRating?.toString() || "0",
 			minBlessingRarity: rule.minBlessingRarity?.toString() || "0",

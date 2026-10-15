@@ -124,6 +124,7 @@ export function RuleBasedFilters(props: Props) {
 			data[index] = {
 				...data[index]!,
 				type: eventTarget.value,
+				rarities: selectingCurio ? [] : data[index]!.rarities,
 				item: selectingCurio ? "" : data[index]!.item,
 				weaponFamily: familyDoesNotFit || selectingCurio ? "" : data[index]!.weaponFamily,
 				weaponStats: familyDoesNotFit || selectingCurio ? [] : data[index]!.weaponStats,
@@ -136,8 +137,19 @@ export function RuleBasedFilters(props: Props) {
 			if (!ruleFormDirty) setRuleFormDirty(true)
 			return
 		}
-		// @ts-ignore
-		data[index][eventTarget.name] = eventTarget.value
+		if (eventTarget.name === "rarities") {
+			const rarity = Number(eventTarget.value)
+			const selected = data[index]!.rarities ?? []
+			data[index] = {
+				...data[index]!,
+				rarities: (eventTarget as HTMLInputElement).checked
+					? [...new Set([...selected, rarity])].sort((a, b) => a - b)
+					: selected.filter((value) => value !== rarity),
+			}
+		} else {
+			// @ts-ignore
+			data[index][eventTarget.name] = eventTarget.value
+		}
 		setRuleFields(data)
 		if (!ruleFormDirty) setRuleFormDirty(true)
 	}

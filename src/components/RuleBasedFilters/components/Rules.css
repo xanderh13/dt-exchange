@@ -7,6 +7,20 @@
 	margin-bottom: 10px;
 }
 
+.rarity-options {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin: 8px 0 16px;
+	border: 1px solid #5df8ff;
+}
+
+.rarity-options label {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+}
+
 .filter-rules-group-header {
 	margin-top: 2px;
 	display: flex;

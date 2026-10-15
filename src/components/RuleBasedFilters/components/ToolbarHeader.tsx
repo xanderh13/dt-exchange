@@ -15,6 +15,12 @@ export function ToolbarHeader(props: ToolbarHeaderProps) {
 		if (input.store) newHeaderAr.push(STORE_LABELS[input.store] || input.store)
 		if (input.character) newHeaderAr.push(capitalize(input.character))
 		if (input.type) newHeaderAr.push(capitalize(input.type))
+		if (input.rarities?.length) {
+			const names = ["Gray", "Green", "Blue", "Purple", "Gold"]
+			newHeaderAr.push(
+				`Rarity: ${input.rarities.map((value) => names[value - 1] ?? value).join(" / ")}`,
+			)
+		}
 		const weaponFamily = getWeaponFamily(input.weaponFamily)
 		if (weaponFamily) newHeaderAr.push(weaponFamily.name)
 		if (CURIO_STATS.includes(input.curioStat as CurioStat)) {

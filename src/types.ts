@@ -221,6 +221,7 @@ export type ItemCategory = (typeof ITEM_CATEGORIES)[number]
 export const ITEM_OPTIONS = Object.values(ITEM_CATEGORIES) as ItemCategory[]
 
 export interface FilterRule {
+	rarities?: number[]
 	character?: ClassType[] | ClassType
 	item?: string[] | string
 	weaponFamily?: string
@@ -256,6 +257,7 @@ export interface FormWeaponStatRule {
 }
 
 export interface FormFilterRule {
+	rarities?: number[]
 	character: string
 	item: string
 	weaponFamily: string

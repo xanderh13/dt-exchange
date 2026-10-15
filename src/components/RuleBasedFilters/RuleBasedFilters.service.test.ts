@@ -27,6 +27,13 @@ function formRule(overrides: Partial<FormFilterRule> = {}): FormFilterRule {
 }
 
 describe("dump stat rule conversion", () => {
+	test("preserves arbitrary rarity selections across saving and reopening", () => {
+		const rules = formDataToRules([formRule({ rarities: [1, 2, 5] })])
+		expect(rules[0]?.rarities).toEqual([1, 2, 5])
+		expect(formDataToRules(rulesToFormData(rules))[0]?.rarities).toEqual([1, 2, 5])
+		expect(formDataToRules([formRule({ rarities: [] })])[0]?.rarities).toBeUndefined()
+		expect(rulesToFormData([{}])[0]?.rarities).toEqual([])
+	})
 	test("converts comma-separated dump stat names to a filter array", () => {
 		const [rule] = formDataToRules([formRule({ dumpStat: "Mobility, Defences" })])
 

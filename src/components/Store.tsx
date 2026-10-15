@@ -10,7 +10,7 @@ import { Item } from "./Item/Item"
 import type { DeemphasizeOption } from "./Item/Item"
 import { getBlessingDescription, getPerkDescription } from "./Item/utils"
 import { calculateMaxBaseStats, findDumpStat, matchesDumpStatName } from "./Item/baseStats"
-import { calculateItemPower } from "./Item/powerLevel"
+import { calculateItemPower, calculateUnroundedItemPower } from "./Item/powerLevel"
 import { getWeaponFamily, matchesWeaponFamilyStats } from "../weaponCatalog"
 import { matchesCurioStat } from "../curioStats"
 
@@ -28,12 +28,12 @@ const sortOptions = {
 	},
 
 	itemRating: (a: Personal, b: Personal) => {
-		return calculateItemPower(b.description) - calculateItemPower(a.description)
+		return calculateUnroundedItemPower(b.description) - calculateUnroundedItemPower(a.description)
 	},
 
 	rarity: (a: Personal, b: Personal) => {
 		if (b.description.overrides.rarity === a.description.overrides.rarity) {
-			return calculateItemPower(b.description) - calculateItemPower(a.description)
+			return calculateUnroundedItemPower(b.description) - calculateUnroundedItemPower(a.description)
 		}
 		return b.description.overrides.rarity - a.description.overrides.rarity
 	},
@@ -41,7 +41,7 @@ const sortOptions = {
 	alphabetical: (a: Personal, b: Personal) => {
 		let aName = localisation[a.description.id].display_name
 		let bName = localisation[b.description.id].display_name
-		return aName > bName ? 1 : -1
+		return aName.localeCompare(bName)
 	},
 
 	credits: (a: Personal, b: Personal) => {
@@ -66,15 +66,17 @@ export function compareStoreOffers(
 	matchesFirst: boolean,
 ) {
 	if (matchesFirst) {
-		const aMatches = (a.description.overrides.filter_match ?? -1) >= 0
-		const bMatches = (b.description.overrides.filter_match ?? -1) >= 0
-
-		if (aMatches !== bMatches) {
-			return aMatches ? -1 : 1
-		}
+		const aMatch = a.description.overrides.filter_match ?? -1
+		const bMatch = b.description.overrides.filter_match ?? -1
+		const priority = (aMatch >= 0 ? aMatch : Infinity) - (bMatch >= 0 ? bMatch : Infinity)
+		if (priority) return priority
 	}
 
-	return sortOptions[sortOption](a, b)
+	return (
+		sortOptions[sortOption](a, b) ||
+		calculateUnroundedItemPower(b.description) - calculateUnroundedItemPower(a.description) ||
+		a.offerId.localeCompare(b.offerId)
+	)
 }
 
 let filterOptions = {
@@ -96,7 +98,7 @@ let filterOptions = {
 export type FilterOption = keyof typeof filterOptions
 export const FILTER_OPTIONS = Object.keys(filterOptions) as FilterOption[]
 
-function filterFunc(
+export function filterFunc(
 	char: Character | undefined,
 	storeType: StoreType,
 	offer: Personal,
@@ -110,6 +112,9 @@ function filterFunc(
 	let arr: string[]
 
 	var found = targets.findIndex(function (target) {
+		if (target.rarities?.length && !target.rarities.includes(offer.description.overrides.rarity)) {
+			return false
+		}
 		const needsMaxStats = target.dumpStat || target.stats || target.weaponStats
 		const maxStats = needsMaxStats
 			? calculateMaxBaseStats(

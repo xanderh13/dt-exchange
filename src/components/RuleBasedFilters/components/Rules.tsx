@@ -89,6 +89,23 @@ export function Rules(props: RulesProps) {
 						onBlur={() => setFocusedRule("")}
 					/>
 				</SplitRuleWrapper>
+				{props.input.type !== "curio" && (
+					<fieldset className="rarity-options">
+						<legend>Item Rarity (none selected = any)</legend>
+						{["Gray", "Green", "Blue", "Purple", "Gold"].map((label, index) => (
+							<label key={label}>
+								<input
+									type="checkbox"
+									name="rarities"
+									value={index + 1}
+									checked={props.input.rarities?.includes(index + 1) ?? false}
+									onChange={(event) => props.onChange(props.index, event)}
+								/>
+								{label}
+							</label>
+						))}
+					</fieldset>
+				)}
 				<Rule
 					label={"Characters"}
 					type={"text"}
