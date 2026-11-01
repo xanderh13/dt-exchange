@@ -16,8 +16,22 @@
 	flex: 0 0 12px;
 }
 
-.filter-rules-toolbar-header > span {
-	overflow: hidden;
+.scrolling-rule-text {
+	flex: 1;
+	min-width: 0;
+	overflow-x: auto;
 	white-space: nowrap;
-	text-overflow: ellipsis;
+	scrollbar-width: none;
+}
+
+.scrolling-rule-text::-webkit-scrollbar {
+	display: none;
+}
+
+.scrolling-rule-text > span {
+	display: inline-block;
+}
+
+.scrolling-rule-text:focus-visible {
+	outline: 1px solid #5df8ff;
 }

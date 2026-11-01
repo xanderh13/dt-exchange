@@ -1,5 +1,5 @@
 import type { FormFilterRule } from "../../../types"
-import { RuleText } from "./RuleText"
+import { ScrollingRuleText } from "./ScrollingRuleText"
 import "./ToolbarHeader.css"
 import { defaultEmphasisColor, STORE_LABELS } from "../../../types"
 import { capitalize } from "../../../utils"
@@ -87,8 +87,11 @@ export function ToolbarHeader(props: ToolbarHeaderProps) {
 			<div
 				className={"filter-rules-toolbar-header"}
 				title={header}
-				onMouseDown={(e) => {
+				onDragStart={(e) => {
 					e.preventDefault()
+					e.stopPropagation()
+				}}
+				onMouseDown={(e) => {
 					e.stopPropagation()
 				}}
 			>
@@ -96,7 +99,7 @@ export function ToolbarHeader(props: ToolbarHeaderProps) {
 					className={"filter-rules-toolbar-header-color"}
 					style={{ background: props.input.color || defaultEmphasisColor }}
 				/>
-				<RuleText size={"small"}>{header}</RuleText>
+				<ScrollingRuleText text={header} />
 			</div>
 		</>
 	)
